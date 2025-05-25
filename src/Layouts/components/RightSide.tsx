@@ -35,8 +35,9 @@ function RightSide() {
       count: "1.5k",
     },
   ];
+
   return (
-    <div className="w-1/4 space-y-4">
+    <div className="grid gap-x-10 grid-cols-1">
       <div className="flex justify-end">
         <ButtonTheme />
       </div>
@@ -68,7 +69,7 @@ function RightSide() {
               <div className="flex flex-col mt-5">
                 <div className="flex flex-row justify-between">
                   <div>
-                    <h3 className="text-xl font-bold"></h3>
+                    <h3 className="text-xl font-bold">Jaya Saleh</h3>
                     <p className="text-sm text-muted-foreground mb-3">
                       @jayasaleh
                     </p>

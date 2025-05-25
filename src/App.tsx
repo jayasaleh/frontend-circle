@@ -25,7 +25,6 @@ function App() {
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <AuthContextProvider>
-          <Button onClick={notify}> Make me toast</Button>
           <RouterProvider router={router} />
           <Toaster position="bottom-right" />
         </AuthContextProvider>

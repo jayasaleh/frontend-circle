@@ -18,7 +18,7 @@ function Navigation() {
   const location = useLocation(); // Mendapatkan path halaman aktif
 
   return (
-    <div className="w-1/4 flex flex-col justify-between border-r p-4">
+    <div className="border-r p-4">
       <div className="flex flex-col space-y-7">
         <h2 className="text-4xl font-bold mb-4 text-green-600">Circle</h2>
         <NavLink

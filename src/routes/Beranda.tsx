@@ -39,7 +39,7 @@ function Beranda() {
   const [tweets, setTweets] = useState<Tweets[]>([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/v2/tweets")
+      .get("http://localhost:3000/api/v1/tweets")
       .then(function (response) {
         setTweets(response.data);
         console.log(response.data);
@@ -54,23 +54,23 @@ function Beranda() {
       });
   }, []);
 
-  const [post, setPost] = React.useState<Posting>({
-    description: "",
-    image: "",
-  });
-  const [content, setContent] = React.useState<Posting[]>([]);
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setPost((prevPost) => ({
-      ...prevPost,
-      description: event.target.value,
-    }));
-    console.log(post);
-  }
-  function submitPost() {
-    setContent([...content, post]);
-  }
+  // const [post, setPost] = React.useState<Posting>({
+  //   description: "",
+  //   image: "",
+  // });
+  // const [content, setContent] = React.useState<Posting[]>([]);
+  // function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setPost((prevPost) => ({
+  //     ...prevPost,
+  //     description: event.target.value,
+  //   }));
+  //   console.log(post);
+  // }
+  // function submitPost() {
+  //   setContent([...content, post]);
+  // }
   return (
-    <div className="w-2/4">
+    <div className="w-full">
       {/*Posting Input*/}
       <div className="flex flex-col space-y-4">
         <h2 className="text-xs md:text-2xl font-bold">Home</h2>
@@ -86,16 +86,12 @@ function Beranda() {
             <Input
               placeholder="What's is happening?"
               className="text-lg flex-1"
-              onChange={handleChange}
               name="post"
-              value={post.description}
             />
             <Button variant="ghost" size="icon" className="rounded-full">
               <Image size={20} />
             </Button>
-            <Button className="rounded-full bg-green-600" onClick={submitPost}>
-              Post
-            </Button>
+            <Button className="rounded-full bg-green-600">Post</Button>
           </div>
         </div>
       </div>
