@@ -1,0 +1,28 @@
+import AllPostProfile from "@/routes/AllPostProfile";
+import MediaProfile from "@/routes/MediaProfile";
+import { useState } from "react";
+
+const TestButtom = () => {
+  const [button, setButton] = useState("All Post");
+  return (
+    <div>
+      <div className="flex justify-center gap-5">
+        {["All Post", "Media Profile"].map((field, i) => (
+          <button
+            key={i}
+            onClick={() => setButton(field)}
+            className={`text-xl font-semibold rounded-none w-90 cursor-pointer  ${
+              button == field ? "border-b-2 border-[#4CAF50]" : ""
+            }`}
+          >
+            {field}
+          </button>
+        ))}
+      </div>
+
+      {button == "All Post" ? <AllPostProfile /> : <MediaProfile />}
+    </div>
+  );
+};
+
+export default TestButtom;
