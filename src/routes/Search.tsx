@@ -73,7 +73,7 @@ const Search = () => {
   };
 
   return (
-    <div className="w-2/4 mx-auto mt-10">
+    <div className="mx-auto mt-10">
       <div className="relative mb-5">
         <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
         <Input

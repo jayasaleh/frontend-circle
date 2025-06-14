@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+export type LoginDTO = z.infer<typeof schemaLogin>;
 export const schemaLogin = z.object({
   email: z
     .string()
@@ -7,6 +8,8 @@ export const schemaLogin = z.object({
     .email("Format email tidak valid"),
   password: z.string().min(6, "Password minimal 6 karakter"),
 });
+
+export type RegisterDTO = z.infer<typeof schemaRegister>;
 export const schemaRegister = z.object({
   username: z.string().min(3, "username wajib diisi"),
   email: z

@@ -7,17 +7,6 @@ import { NavLink } from "react-router-dom";
 function MediaProfile() {
   return (
     <div className="flex flex-1 flex-col">
-      <div className="flex border-b justify-center border-gray-800 text-center">
-        <NavLink to="/profile" className="  rounded-none w-70">
-          All Post
-        </NavLink>
-        <NavLink
-          to="/media-profile"
-          className=" rounded-none w-70 border-b-2 border-[#4CAF50]"
-        >
-          Media
-        </NavLink>
-      </div>
       <div className="h-[100vh] overflow-auto mt-4 no-scrollbar">
         <div className="grid grid-cols-3 grid-rows-3 gap-1">
           <img

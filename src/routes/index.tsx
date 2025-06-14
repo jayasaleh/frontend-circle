@@ -1,15 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./Home";
 import AuthLogin from "./AuthLogin";
 import AuthRegister from "./AuthRegister";
 import Beranda from "./Beranda";
 
-import ForgotPassword from "./ForgotPassword";
-import ProtectedRoute from "./ProtectedRoute";
-import Profile from "./Profile";
-import Search from "./Search";
 import Follows from "./Follows";
+import ForgotPassword from "./ForgotPassword";
 import MediaProfile from "./MediaProfile";
+import Profile from "./Profile";
+import ProtectedRoute from "./ProtectedRoute";
+import Search from "./Search";
 import Status from "./Status";
 
 let router = createBrowserRouter([
@@ -55,10 +54,6 @@ let router = createBrowserRouter([
   {
     path: "/forgotpassword",
     Component: ForgotPassword,
-  },
-  {
-    path: "/tes",
-    Component: Home,
   },
 ]);
 export default router;

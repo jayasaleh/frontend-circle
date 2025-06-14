@@ -9,7 +9,6 @@ const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 
 function AuthContextProvider({ children }: { children: ReactNode }) {
   const [isAuth, setIsAuth] = useState(false);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

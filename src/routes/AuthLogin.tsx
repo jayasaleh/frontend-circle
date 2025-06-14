@@ -1,51 +1,22 @@
 import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useLogin } from "@/hooks/useLogin";
+import { LoginDTO, schemaLogin } from "@/schema/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "react-router-dom";
-import { schemaLogin } from "@/schema/schema";
-import { api } from "@/utils/api";
-import { useAuth } from "@/components/auth/AuthContext";
-import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 function AuthLogin() {
-  type FormData = z.infer<typeof schemaLogin>;
-
-  const { login, isAuth } = useAuth();
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<LoginDTO>({
     resolver: zodResolver(schemaLogin),
     mode: "all",
   });
-
-  const handleLogin = async (data: FormData) => {
-    try {
-      const res = await api.post("/login", data);
-      const token = res.data.token;
-      login(token);
-
-      console.log("asdasd", res.data);
-      navigate("/");
-    } catch (error: any) {
-      toast.error("", {
-        description: error.response.data.message,
-      });
-    }
-  };
-
-  // memanggil data login
-  const onSubmit = async (data: FormData) => {
-    await handleLogin(data);
-  };
-  // if (isAuth === true) {
-  //   navigate("/");
-  // }
+  const { mutate, isPending } = useLogin();
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -55,7 +26,7 @@ function AuthLogin() {
 
         <form
           className="space-y-4 w-full max-w-md"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit((data) => mutate(data))}
         >
           <Input type="text" {...register("email")} placeholder="Email" />
           {errors.email ? (
@@ -83,8 +54,9 @@ function AuthLogin() {
           <Button
             type="submit"
             className="w-full rounded-full bg-green-600 text-lg font-bold"
+            disabled={isPending}
           >
-            Login
+            {isPending ? "Loading..." : "Login"}
           </Button>
         </form>
 

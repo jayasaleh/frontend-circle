@@ -16,7 +16,7 @@ export default function CreatePostModal() {
       <DialogTrigger asChild>
         <Button className="w-full mb-4 flex items-center gap-2 justify-center rounded-full font-bold">
           <Plus size={50} className="dark:text-white" />
-          <span className="text-xl text-white">Create Post</span>
+          <span className="text-md text-white">Create Post</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[550px] bg-[#121212] border-gray-800 p-0 overflow-hidden">

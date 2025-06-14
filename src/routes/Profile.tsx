@@ -16,6 +16,8 @@ import { NavLink } from "react-router-dom";
 import { Heart, MessageSquare } from "lucide-react";
 import axios from "axios";
 import TestButtom from "@/test/test-buttom";
+import { api } from "@/utils/api";
+import { useQuery } from "@tanstack/react-query";
 
 type User = {
   id: number;
@@ -49,9 +51,30 @@ function Profile() {
   }, []);
   const [users, setUsers] = useState<User[]>([]);
 
+  const fetchUsers = async (): Promise<User[]> => {
+    const res = await api.get("/users");
+    if (!res) {
+      throw new Error("Failed to fetch users");
+    }
+    return res.data;
+  };
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+  });
+  if (isLoading) return <p>Loading...</p>;
+  if (error instanceof Error) return <p>Error: {error.message}</p>;
   return (
     <div className="flex flex-1 flex-col">
-      {users.map((user) => (
+      <ul>
+        {data?.map((user) => (
+          <li key={user.id}>
+            {user.name} {user.name} - {user.email}
+          </li>
+        ))}
+      </ul>
+      {/* {users.map((user) => (
         <div key={user.id} className="border p-4 mb-2 rounded">
           <p>
             <strong>Nama:</strong> {user.name}
@@ -63,7 +86,7 @@ function Profile() {
             <strong>Email:</strong> {user.email}
           </p>
         </div>
-      ))}
+      ))} */}
 
       <header className=" flex items-center ">
         <div className="flex items-center">

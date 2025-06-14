@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function AllPostProfile() {
   return (
-    <div className="overflow-auto h-[100vh]">
+    <div className="">
       <div className="p-4 flex-col gap-5">
         <div className="flex gap-3 ">
           <Avatar className="h-10 w-10">

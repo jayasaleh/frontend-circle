@@ -1,43 +1,23 @@
+import ProfileEditDialog from "@/components/ProfileEditDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ButtonTheme } from "@/components/ui/buttonTheme";
-import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
-import { PiInstagramLogoFill } from "react-icons/pi";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import React from "react";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { useAuthLogin } from "@/stores/authLogin";
+import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
+import { PiInstagramLogoFill } from "react-icons/pi";
 import { useLocation } from "react-router-dom";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import CreatePostModal from "@/components/CreatePostModal";
-import ProfileEditDialog from "@/components/ProfileEditDialog";
 function RightSide() {
   const location = useLocation();
-  const statistic = [
-    {
-      type: "Post",
-      count: "10",
-    },
-    {
-      type: "Follower",
-      count: "10k",
-    },
-    {
-      type: "Following",
-      count: "1.5k",
-    },
-  ];
+
+  const { user } = useAuthLogin();
+
+  const { isLoading } = useCurrentUser();
+  if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="grid gap-x-10 grid-cols-1">
+    <div className="grid gap-2 grid-cols-1 p-2 sticky top-0">
       <div className="flex justify-end">
         <ButtonTheme />
       </div>
@@ -46,22 +26,18 @@ function RightSide() {
         location.pathname !== "/media-profile" && (
           <Card>
             <div className="relative p-2">
-              <h1 className="ml-2 text-lg font-bold"> My Profile</h1>
               {/* Background Image */}
               <div className="h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg"></div>
 
               {/* Profile Avatar - Positioned to overlap the background */}
-              <div className="absolute -bottom-5 left-5">
-                <Avatar className="h-16 w-16 border-4 border-background">
+              <div className="absolute -bottom-5 left-4">
+                <Avatar className="h-16 w-16 border-1 border-background">
                   <AvatarImage
                     src="https://i.pinimg.com/736x/40/c4/9d/40c49df48aeeac3b9dda97e66e7312de.jpg"
                     alt="Profile"
                   />
                   <AvatarFallback>JS</AvatarFallback>
                 </Avatar>
-                {/* <div className="absolute -bottom-3 left-65">
-                  <ProfileEditDialog />
-                </div> */}
               </div>
             </div>
 
@@ -69,30 +45,19 @@ function RightSide() {
               <div className="flex flex-col mt-5">
                 <div className="flex flex-row justify-between">
                   <div>
-                    <h3 className="text-xl font-bold">Jaya Saleh</h3>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      @jayasaleh
+                    <h3 className="text-md font-bold">{user?.name}</h3>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      @{user?.username}
                     </p>
                   </div>
+
                   <ProfileEditDialog />
                 </div>
-                <div className="flex flex-col gap-1 mt-2">
-                  <p className="text-sm">
+                <div className="flex flex-col">
+                  <p className="text-xs">
                     Halo guys welcome to my profile huehue
                   </p>
-                  <div className="flex  justify-between w-full mt-1 mb-1">
-                    {statistic.map((data) => (
-                      <div
-                        className="text-center flex flex-row items-center gap-2"
-                        key={data.type}
-                      >
-                        <p className="font-bold">{data.count}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {data.type}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                  <div className="flex  justify-between w-full mt-1 mb-1"></div>
                 </div>
               </div>
             </CardContent>
@@ -122,55 +87,7 @@ function RightSide() {
               </div>
               <Button
                 variant="outline"
-                size="sm"
-                className="rounded-full text-xs"
-              >
-                Follow
-              </Button>
-            </div>
-
-            {/* Suggestion 2 */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="Mike Chen"
-                  />
-                  <AvatarFallback>MC</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-medium">Michele Supriman</p>
-                  <p className="text-xs text-muted-foreground">@michelesup</p>
-                </div>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-full text-xs"
-              >
-                Follow
-              </Button>
-            </div>
-
-            {/* Suggestion 3 */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="Elon Musk"
-                  />
-                  <AvatarFallback>EM</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-medium">Elon Musk</p>
-                  <p className="text-xs text-muted-foreground">@elonmusk</p>
-                </div>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
+                // size="sm"
                 className="rounded-full text-xs"
               >
                 Follow
@@ -183,7 +100,7 @@ function RightSide() {
         <Card className="">
           <CardContent>
             <div className="flex dark:text-gray-400 items-center gap-2">
-              <span className="">
+              <span className="text-sm">
                 Developed by <b>Jaya Saleh</b> •
               </span>
               <FaGithub size={20} className="" />

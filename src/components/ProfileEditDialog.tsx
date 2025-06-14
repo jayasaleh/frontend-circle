@@ -23,11 +23,13 @@ export default function ProfileEditDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="outline" className="w-20 text-xs">
+          Edit Profile
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] p-3 bg-[#1a1a1a] border-[#333] text-white overflow-hidden">
+      <DialogContent className="sm:max-w-[400px] sm:max-h-[550px] p-3 bg-[#1a1a1a] border-[#333] text-white overflow-hidden">
         <div className="relative">
-          <DialogHeader className="p-4 pb-0">
+          <DialogHeader className="p-1 pb-0">
             <DialogTitle className="text-md font-medium">
               Edit profile
             </DialogTitle>
@@ -35,7 +37,7 @@ export default function ProfileEditDialog() {
 
           <div className="relative">
             {/* Banner image with gradient */}
-            <div className="h-30 w-full bg-gradient-to-r from-green-500 to-blue-500 rounded-md mx-auto mt-2"></div>
+            <div className="h-20 w-full bg-gradient-to-r from-green-500 to-blue-500 rounded-md mx-auto mt-2"></div>
 
             {/* Profile picture with upload button */}
             <div className="absolute -bottom-12 left-6">
@@ -46,7 +48,7 @@ export default function ProfileEditDialog() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer">
-                  <div className="bg-[#333] p-2 rounded-full">
+                  <div className="bg-[#333] p-2 rounded-full">z
                     <Camera className="h-5 w-5 text-white" />
                   </div>
                 </div>

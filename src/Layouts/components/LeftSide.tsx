@@ -1,34 +1,30 @@
-import { Button } from "@/components/ui/button";
-import {
-  Heart,
-  Home,
-  LogIn,
-  LogOut,
-  LogOutIcon,
-  Plus,
-  Search,
-  User,
-} from "lucide-react";
-import { TbLogout2 } from "react-icons/tb";
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
 import CreatePostModal from "@/components/CreatePostModal";
+import { Button } from "@/components/ui/button";
+import { useAuthLogin } from "@/stores/authLogin";
+import { Heart, Home, Search, User } from "lucide-react";
+import { TbLogout2 } from "react-icons/tb";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 function Navigation() {
-  const location = useLocation(); // Mendapatkan path halaman aktif
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuthLogin();
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
   return (
-    <div className="border-r p-4">
+    <div className="p-4 sticky top-0">
       <div className="flex flex-col space-y-7">
-        <h2 className="text-4xl font-bold mb-4 text-green-600">Circle</h2>
+        <h2 className="text-2xl font-bold mb-4 text-green-600">Circle</h2>
         <NavLink
           to="/"
           className={`flex items-center gap-2 hover:underline ${
             location.pathname === "/" ? "text-green-600 font-bold" : ""
           }`}
         >
-          <Home size={30} />
-          <span className="text-2xl">Home</span>
+          <Home size={20} />
+          <span className="text-xl">Home</span>
         </NavLink>
         <NavLink
           to="/search"
@@ -36,8 +32,8 @@ function Navigation() {
             location.pathname === "/search" ? "text-green-600 font-bold" : ""
           }`}
         >
-          <Search size={30} />
-          <span className="text-2xl">Search</span>
+          <Search size={20} />
+          <span className="text-xl">Search</span>
         </NavLink>
         <NavLink
           to="/follows"
@@ -45,8 +41,8 @@ function Navigation() {
             location.pathname === "/follows" ? "text-green-600 font-bold" : ""
           }`}
         >
-          <Heart size={30} />
-          <span className="text-2xl">Follows</span>
+          <Heart size={20} />
+          <span className="text-xl">Follows</span>
         </NavLink>
         <NavLink
           to="/profile"
@@ -57,18 +53,16 @@ function Navigation() {
               : ""
           }`}
         >
-          <User size={30} />
-          <span className="text-2xl">Profile</span>
+          <User size={20} />
+          <span className="text-xl">Profile</span>
         </NavLink>
         <CreatePostModal />
       </div>
 
-      <div className="flex flex-row justify-start items-center">
-        <TbLogout2 size={40} />
-        <NavLink to="/login" className="px-10 py-2 ">
-          <span className="text-2xl"> Log Out</span>
-        </NavLink>
-      </div>
+      <Button className="px-10 py-2" onClick={handleLogout}>
+        <TbLogout2 size={20} className="dark:text-white" />
+        <span className="dark:text-white"> Log Out</span>
+      </Button>
     </div>
   );
 }
