@@ -16,12 +16,11 @@ export const useLogin = () => {
     onSuccess: (data) => {
       setToken(data.token);
       setUser(data.user);
-      console.log(data);
-      toast.success(`Login berhasil, SeLamat datang ${data.user.name}`);
+      toast.success(`Success Login, Welcome  ${data.user.name}`);
       navigate("/");
     },
     onError: (error) => {
-      toast.error(error?.message || "Login Gagal");
+      toast.error("email / password salah");
     },
   });
   return mutation;

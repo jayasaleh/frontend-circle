@@ -5,6 +5,8 @@ type User = {
   email: string;
   username: string;
   name: string;
+  bio?: string;
+  photo?: string;
 };
 
 type AuthState = {

@@ -1,12 +1,17 @@
-import Layout from "@/Layouts/Layout";
-import { useUserStore } from "@/stores/auth";
-import React from "react";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { Navigate, Outlet } from "react-router-dom";
 
 function ProtectedRoute() {
-  const isAuth = localStorage.getItem("token");
+  const { data: user, isLoading, isError } = useCurrentUser();
 
-  return <Layout>{isAuth ? <Outlet /> : <Navigate to="/" />}</Layout>;
+  if (isLoading) {
+    return <div>Waiting...</div>;
+  }
+
+  if (isError || !user) {
+    return <Navigate to="/login" replace />;
+  }
+  return <Outlet />;
 }
 
 export default ProtectedRoute;

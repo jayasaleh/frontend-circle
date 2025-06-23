@@ -23,7 +23,7 @@ export default function ProfileEditDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="w-20 text-xs">
+        <Button variant="outline" className="w-20 text-xs rounded-2xl">
           Edit Profile
         </Button>
       </DialogTrigger>
@@ -48,7 +48,8 @@ export default function ProfileEditDialog() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer">
-                  <div className="bg-[#333] p-2 rounded-full">z
+                  <div className="bg-[#333] p-2 rounded-full">
+                    z
                     <Camera className="h-5 w-5 text-white" />
                   </div>
                 </div>

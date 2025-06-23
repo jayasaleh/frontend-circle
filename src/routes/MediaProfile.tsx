@@ -1,9 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Heart, MessageSquare } from "lucide-react";
-import React from "react";
-import { NavLink } from "react-router-dom";
-
 function MediaProfile() {
   return (
     <div className="flex flex-1 flex-col">

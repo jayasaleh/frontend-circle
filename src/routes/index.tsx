@@ -10,35 +10,38 @@ import Profile from "./Profile";
 import ProtectedRoute from "./ProtectedRoute";
 import Search from "./Search";
 import Status from "./Status";
+import Layout from "@/Layouts/Layout";
 
 let router = createBrowserRouter([
   {
     Component: ProtectedRoute,
+
     children: [
       {
-        path: "/",
-        Component: Beranda,
-      },
+        element: <Layout />,
+        children: [
+          {
+            path: "/",
+            Component: Beranda,
+          },
+          {
+            path: "/profile",
+            Component: Profile,
+          },
 
-      {
-        path: "/profile",
-        Component: Profile,
-      },
-      {
-        path: "/media-profile",
-        Component: MediaProfile,
-      },
-      {
-        path: "/search",
-        Component: Search,
-      },
-      {
-        path: "/follows",
-        Component: Follows,
-      },
-      {
-        path: "/status",
-        Component: Status,
+          {
+            path: "/search",
+            Component: Search,
+          },
+          {
+            path: "/follows",
+            Component: Follows,
+          },
+          {
+            path: "/status",
+            Component: Status,
+          },
+        ],
       },
     ],
   },

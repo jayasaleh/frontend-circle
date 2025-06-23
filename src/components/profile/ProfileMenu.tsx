@@ -2,7 +2,7 @@ import AllPostProfile from "@/routes/AllPostProfile";
 import MediaProfile from "@/routes/MediaProfile";
 import { useState } from "react";
 
-const TestButtom = () => {
+const ProfileMenu = () => {
   const [button, setButton] = useState("All Post");
   return (
     <div>
@@ -25,4 +25,4 @@ const TestButtom = () => {
   );
 };
 
-export default TestButtom;
+export default ProfileMenu;

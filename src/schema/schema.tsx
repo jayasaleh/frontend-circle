@@ -6,20 +6,27 @@ export const schemaLogin = z.object({
     .string()
     .min(1, "Email wajib diisi")
     .email("Format email tidak valid"),
-  password: z.string().min(6, "Password minimal 6 karakter"),
+  password: z.string().min(4, "Password minimal 6 karakter"),
 });
 
 export type RegisterDTO = z.infer<typeof schemaRegister>;
-export const schemaRegister = z.object({
-  username: z.string().min(3, "username wajib diisi"),
-  email: z
-    .string()
-    .min(1, "email wajib diisi")
-    .email("Format email tidak valid"),
-  password: z
-    .string()
-    .min(6, "password minimal 6 karakter")
-    .refine((val) => /[!@#$%^&*()]/.test(val), {
-      message: "Password must include at least one special character",
-    }),
-});
+export const schemaRegister = z
+  .object({
+    name: z.string().min(4, "Nama minimal 4 karakter"),
+    username: z.string().min(4, "Username minimal 4 karakter"),
+    email: z
+      .string()
+      .min(1, "email wajib diisi")
+      .email("Format email tidak valid"),
+    password: z
+      .string()
+      .min(6, "password minimal 6 karakter")
+      .refine((val) => /[!@#$%^&*()]/.test(val), {
+        message: "Password must include at least one special character",
+      }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password dan konfirmasi password tidak cocok",
+    path: ["confirmPassword"],
+  });

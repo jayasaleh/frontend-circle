@@ -1,43 +1,48 @@
-import ProfileEditDialog from "@/components/ProfileEditDialog";
+import ProfileEditDialog from "@/Layouts/components/ProfileEditDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { ButtonTheme } from "@/components/ui/buttonTheme";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useAuthLogin } from "@/stores/authLogin";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import { PiInstagramLogoFill } from "react-icons/pi";
 import { useLocation } from "react-router-dom";
+import WhoToFollow from "./WhoToFollow";
+
 function RightSide() {
   const location = useLocation();
 
   const { user } = useAuthLogin();
 
   const { isLoading } = useCurrentUser();
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="grid gap-2 grid-cols-1 p-2 sticky top-0 ">
+        <Skeleton className="h-[150px] w-full rounded-xl" />
+        <Skeleton className="h-[70px] w-full rounded-xl" />
+        <Skeleton className="h-[70px] w-full rounded-xl" />
+      </div>
+    );
 
   return (
-    <div className="grid gap-2 grid-cols-1 p-2 sticky top-0">
-      <div className="flex justify-end">
-        <ButtonTheme />
-      </div>
+    <div className="grid gap-2 grid-cols-1 sticky top-0 pl-2 pt-2">
       {/* Profile Card */}
       {location.pathname !== "/profile" &&
         location.pathname !== "/media-profile" && (
           <Card>
-            <div className="relative p-2">
+            <div className="relative p-2 ">
               {/* Background Image */}
               <div className="h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg"></div>
 
               {/* Profile Avatar - Positioned to overlap the background */}
               <div className="absolute -bottom-5 left-4">
                 <Avatar className="h-16 w-16 border-1 border-background">
-                  <AvatarImage
-                    src="https://i.pinimg.com/736x/40/c4/9d/40c49df48aeeac3b9dda97e66e7312de.jpg"
-                    alt="Profile"
-                  />
+                  <AvatarImage src={user?.photo} alt="Profile" />
                   <AvatarFallback>JS</AvatarFallback>
                 </Avatar>
+              </div>
+              <div className="absolute -bottom-9 right-5">
+                <ProfileEditDialog />
               </div>
             </div>
 
@@ -50,52 +55,16 @@ function RightSide() {
                       @{user?.username}
                     </p>
                   </div>
-
-                  <ProfileEditDialog />
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-xs">
-                    Halo guys welcome to my profile huehue
-                  </p>
+                  <p className="text-xs">{user?.bio}</p>
                   <div className="flex  justify-between w-full mt-1 mb-1"></div>
                 </div>
               </div>
             </CardContent>
           </Card>
         )}
-      {/* Who to Follow */}
-      <div>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-md">Who to Follow</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {/* Suggestion 1 */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="Sarah Johnson"
-                  />
-                  <AvatarFallback>SJ</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-medium">Jono Sutrisno</p>
-                  <p className="text-xs text-muted-foreground">@jonosutri</p>
-                </div>
-              </div>
-              <Button
-                variant="outline"
-                // size="sm"
-                className="rounded-full text-xs"
-              >
-                Follow
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <WhoToFollow />
       <div>
         <Card className="">
           <CardContent>
@@ -103,13 +72,13 @@ function RightSide() {
               <span className="text-sm">
                 Developed by <b>Jaya Saleh</b> •
               </span>
-              <FaGithub size={20} className="" />
+              <FaGithub size={20} />
               <FaLinkedin size={20} />
               <FaFacebook size={20} />
               <PiInstagramLogoFill size={20} />
             </div>
             <div>
-              <span className="text-sm dark:text-gray-600">
+              <span className="text-xs dark:text-gray-600">
                 Powered by Dumbways Indonesia • #1 Coding Bootcamp
               </span>
             </div>

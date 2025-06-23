@@ -4,14 +4,14 @@ import LeftSide from "./components/LeftSide";
 import RightSide from "./components/RightSide";
 function Layout() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[0.5fr_2fr_1fr]   h-screen">
-      <aside className="hidden md:block ">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] h-screen ">
+      <aside className=" md:w-full hidden md:block ">
         <LeftSide />
       </aside>
-      <main className=" pt-5 pl-3">
+      <main className=" md:max-w-[850px] pt-2 ">
         <Outlet />
       </main>
-      <aside className="pt-2 hidden md:block ">
+      <aside className="md:w-[300px] md:block ">
         <RightSide />
       </aside>
     </div>

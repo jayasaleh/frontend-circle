@@ -1,6 +1,9 @@
 interface User {
+  id: number;
   username: string;
-  phone: string;
-  email: string;
+  name: string;
+
+  photo?: string;
+  bio?: string;
 }
 export type { User };
