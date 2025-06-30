@@ -1,6 +1,6 @@
-import { Comment } from "./comment";
-import { LikeTweet } from "./likeTweet";
-import { User } from "./user";
+import { Comment } from './comment';
+import { LikeTweet } from './likeTweet';
+import { User } from './user';
 
 export type Tweet = {
   id: number;

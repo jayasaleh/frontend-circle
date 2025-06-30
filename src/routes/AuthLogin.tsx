@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { Input } from "@/components/ui/input";
-import { useLogin } from "@/hooks/useLogin";
-import { LoginDTO, schemaLogin } from "@/schema/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Input } from '@/components/ui/input';
+import { useLogin } from '@/hooks/useLogin';
+import { LoginDTO, schemaLogin } from '@/schema/schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 function AuthLogin() {
   const {
@@ -14,7 +14,7 @@ function AuthLogin() {
     formState: { errors },
   } = useForm<LoginDTO>({
     resolver: zodResolver(schemaLogin),
-    mode: "all",
+    mode: 'all',
   });
   const { mutate, isPending } = useLogin();
 
@@ -28,7 +28,7 @@ function AuthLogin() {
           className="space-y-4 w-full max-w-md"
           onSubmit={handleSubmit((data) => mutate(data))}
         >
-          <Input type="text" {...register("email")} placeholder="Email" />
+          <Input type="text" {...register('email')} placeholder="Email" />
           {errors.email ? (
             <p className="text-red-400"> {errors.email.message}</p>
           ) : (
@@ -36,7 +36,7 @@ function AuthLogin() {
           )}
           <Input
             type="password"
-            {...register("password")}
+            {...register('password')}
             placeholder="Password"
           />
           {errors.password && (
@@ -56,12 +56,12 @@ function AuthLogin() {
             className="w-full rounded-full bg-green-600 text-lg font-bold"
             disabled={isPending}
           >
-            {isPending ? "Loading..." : "Login"}
+            {isPending ? 'Loading...' : 'Login'}
           </Button>
         </form>
 
         <div className="mt-4">
-          Don't have account yet?{" "}
+          Don't have account yet?{' '}
           <Link to="/register" className="text-green-600">
             Register
           </Link>

@@ -1,11 +1,11 @@
 const UserListDummy = [
   {
     id: 1,
-    name: "Surya",
+    name: 'Surya',
   },
   {
     id: 2,
-    name: "Jaya",
+    name: 'Jaya',
   },
 ];
 export default UserListDummy;

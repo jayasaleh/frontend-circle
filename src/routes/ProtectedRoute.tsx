@@ -1,5 +1,5 @@
-import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { Navigate, Outlet } from "react-router-dom";
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { Navigate, Outlet } from 'react-router-dom';
 
 function ProtectedRoute() {
   const { data: user, isLoading, isError } = useCurrentUser();

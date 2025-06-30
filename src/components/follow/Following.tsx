@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useGetFollowing } from "@/hooks/useGetFollowing";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import FollowToggleButton from "./components/FollowToggleButton";
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { useGetFollowing } from '@/hooks/useGetFollowing';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import FollowToggleButton from './components/FollowToggleButton';
 function Following() {
   const { data: following, isLoading, isError } = useGetFollowing();
   if (isLoading) return;

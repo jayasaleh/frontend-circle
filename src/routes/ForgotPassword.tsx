@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { NavLink } from "react-router-dom";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { NavLink } from 'react-router-dom';
 
 function ForgotPassword() {
   return (
@@ -18,7 +18,7 @@ function ForgotPassword() {
           </Button>
         </form>
         <div className="mt-4">
-          Already have account?{" "}
+          Already have account?{' '}
           <NavLink to="/login" className="text-green-600">
             Login
           </NavLink>

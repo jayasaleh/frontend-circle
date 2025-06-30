@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from 'react';
 
 interface AuthContextType {
   isAuth: boolean;
@@ -10,18 +10,18 @@ const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 function AuthContextProvider({ children }: { children: ReactNode }) {
   const [isAuth, setIsAuth] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
       setIsAuth(true);
     }
   }, []);
   const login = (token: string) => {
-    localStorage.setItem("token", token);
+    localStorage.setItem('token', token);
     setIsAuth(true);
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setIsAuth(false);
     window.location.reload();
   };
@@ -35,7 +35,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
 export const useAuth = () => {
   const context = React.useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthContextProvider");
+    throw new Error('useAuth must be used within an AuthContextProvider');
   }
   return context;
 };

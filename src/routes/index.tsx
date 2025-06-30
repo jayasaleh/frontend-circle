@@ -1,16 +1,18 @@
-import { createBrowserRouter } from "react-router-dom";
-import AuthLogin from "./AuthLogin";
-import AuthRegister from "./AuthRegister";
-import Beranda from "./Beranda";
+import { createBrowserRouter } from 'react-router-dom';
+import AuthLogin from './AuthLogin';
+import AuthRegister from './AuthRegister';
+import Beranda from './Beranda';
 
-import Follows from "./Follows";
-import ForgotPassword from "./ForgotPassword";
-import MediaProfile from "./MediaProfile";
-import Profile from "./Profile";
-import ProtectedRoute from "./ProtectedRoute";
-import Search from "./Search";
-import Status from "./Status";
-import Layout from "@/Layouts/Layout";
+import Follows from './Follows';
+import ForgotPassword from './ForgotPassword';
+import MediaProfile from './MediaProfile';
+import Profile from './Profile';
+import ProtectedRoute from './ProtectedRoute';
+import Search from './Search';
+import Status from './Status';
+import Layout from '@/Layouts/Layout';
+import Detail from './DetailTweet';
+import DetailTweet from './DetailTweet';
 
 let router = createBrowserRouter([
   {
@@ -21,24 +23,28 @@ let router = createBrowserRouter([
         element: <Layout />,
         children: [
           {
-            path: "/",
+            path: '/',
             Component: Beranda,
           },
           {
-            path: "/profile",
+            path: '/detail/:id',
+            Component: DetailTweet,
+          },
+          {
+            path: '/profile',
             Component: Profile,
           },
 
           {
-            path: "/search",
+            path: '/search',
             Component: Search,
           },
           {
-            path: "/follows",
+            path: '/follows',
             Component: Follows,
           },
           {
-            path: "/status",
+            path: '/status',
             Component: Status,
           },
         ],
@@ -47,15 +53,15 @@ let router = createBrowserRouter([
   },
 
   {
-    path: "/login",
+    path: '/login',
     Component: AuthLogin,
   },
   {
-    path: "/register",
+    path: '/register',
     Component: AuthRegister,
   },
   {
-    path: "/forgotpassword",
+    path: '/forgotpassword',
     Component: ForgotPassword,
   },
 ]);

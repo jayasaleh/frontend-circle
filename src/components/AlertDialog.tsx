@@ -7,18 +7,21 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 
 type AlertDialogProps = {
-  children: React.ReactNode;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
   onConfirm: () => void;
 };
 
-export function AlertDialogDelete({ children, onConfirm }: AlertDialogProps) {
+export function AlertDialogDelete({
+  open,
+  onConfirm,
+  onOpenChange,
+}: AlertDialogProps) {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

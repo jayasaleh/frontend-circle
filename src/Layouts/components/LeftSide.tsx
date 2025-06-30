@@ -1,10 +1,10 @@
-import CreatePostModal from "@/components/CreatePostModal";
-import { Button } from "@/components/ui/button";
-import { ButtonTheme } from "@/components/ui/buttonTheme";
-import { useAuthLogin } from "@/stores/authLogin";
-import { Heart, Home, Search, User } from "lucide-react";
-import { TbLogout2 } from "react-icons/tb";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import CreatePostModal from '@/components/CreatePostModal';
+import { Button } from '@/components/ui/button';
+import { ButtonTheme } from '@/components/ui/buttonTheme';
+import { useAuthLogin } from '@/stores/authLogin';
+import { Heart, Home, Search, User } from 'lucide-react';
+import { TbLogout2 } from 'react-icons/tb';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 function Navigation() {
   const location = useLocation();
@@ -12,7 +12,7 @@ function Navigation() {
   const { logout } = useAuthLogin();
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate('/login');
   };
   return (
     <div className=" p-4 sticky top-0 flex flex-col justify-between h-screen ">
@@ -21,7 +21,7 @@ function Navigation() {
         <Link
           to="/"
           className={`flex items-center gap-2 hover:underline hover:text-green-600 hover:font-bold ${
-            location.pathname === "/" ? "text-green-600 font-bold" : ""
+            location.pathname === '/' ? 'text-green-600 font-bold' : ''
           }`}
         >
           <Home size={20} />
@@ -30,7 +30,7 @@ function Navigation() {
         <Link
           to="/search"
           className={`flex items-center gap-2 hover:underline hover:text-green-600 hover:font-bold ${
-            location.pathname === "/search" ? "text-green-600 font-bold" : ""
+            location.pathname === '/search' ? 'text-green-600 font-bold' : ''
           }`}
         >
           <Search size={20} />
@@ -39,7 +39,7 @@ function Navigation() {
         <Link
           to="/follows"
           className={`flex items-center gap-2 hover:underline hover:text-green-600 hover:font-bold ${
-            location.pathname === "/follows" ? "text-green-600 font-bold" : ""
+            location.pathname === '/follows' ? 'text-green-600 font-bold' : ''
           }`}
         >
           <Heart size={20} />
@@ -48,10 +48,10 @@ function Navigation() {
         <Link
           to="/profile"
           className={`flex items-center gap-2 hover:underline hover:text-green-600 hover:font-bold ${
-            location.pathname === "/profile" ||
-            location.pathname === "/media-profile"
-              ? "text-green-600 font-bold"
-              : ""
+            location.pathname === '/profile' ||
+            location.pathname === '/media-profile'
+              ? 'text-green-600 font-bold'
+              : ''
           }`}
         >
           <User size={20} />

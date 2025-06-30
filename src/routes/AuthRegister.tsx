@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { usePostRegister } from "@/hooks/usePostRegister";
-import { RegisterDTO, schemaRegister } from "@/schema/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { usePostRegister } from '@/hooks/usePostRegister';
+import { RegisterDTO, schemaRegister } from '@/schema/schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { NavLink } from 'react-router-dom';
 
 function AuthRegister() {
   const {
@@ -13,7 +13,7 @@ function AuthRegister() {
     formState: { errors },
   } = useForm<RegisterDTO>({
     resolver: zodResolver(schemaRegister),
-    mode: "all",
+    mode: 'all',
   });
   const { mutate, isPending } = usePostRegister();
 
@@ -27,7 +27,7 @@ function AuthRegister() {
           className="space-y-4 w-full"
           onSubmit={handleSubmit((data) => mutate(data))}
         >
-          <Input id="name" placeholder="Name" {...register("name")} />
+          <Input id="name" placeholder="Name" {...register('name')} />
           {errors.name ? (
             <p className="text-red-400"> {errors.name.message}</p>
           ) : (
@@ -36,7 +36,7 @@ function AuthRegister() {
           <Input
             id="username"
             placeholder="Username"
-            {...register("username")}
+            {...register('username')}
           />
           {errors.username ? (
             <p className="text-red-400"> {errors.username.message}</p>
@@ -47,7 +47,7 @@ function AuthRegister() {
             id="email"
             type="email"
             placeholder="Email"
-            {...register("email")}
+            {...register('email')}
           />
           {errors.email ? (
             <p className="text-red-400"> {errors.email.message}</p>
@@ -58,7 +58,7 @@ function AuthRegister() {
             id="password"
             type="password"
             placeholder="Password"
-            {...register("password")}
+            {...register('password')}
           />
           {errors.password ? (
             <p className="text-red-400"> {errors.password.message}</p>
@@ -70,7 +70,7 @@ function AuthRegister() {
             id="confirmPassword"
             type="password"
             placeholder="Confirm Password"
-            {...register("confirmPassword")}
+            {...register('confirmPassword')}
           />
           {errors.confirmPassword ? (
             <p className="text-red-400"> {errors.confirmPassword.message}</p>
@@ -83,12 +83,12 @@ function AuthRegister() {
             className="w-full rounded-full bg-green-600 font-bold text-lg"
             disabled={isPending}
           >
-            {isPending ? "Loading..." : "Create"}
+            {isPending ? 'Loading...' : 'Create'}
           </Button>
         </form>
 
         <div className="text-sm mt-3">
-          Already have account? {""}
+          Already have account? {''}
           <NavLink
             to="/login"
             className=" hover:underline font-bold text-green-600"

@@ -32,17 +32,17 @@ function MediaProfile() {
             src="https://images7.alphacoders.com/476/476227.jpg"
             alt=""
             className="w-full h-50 object-cover transition-transform duration-300 hover:scale-120"
-          />{" "}
+          />{' '}
           <img
             src="https://i1.sndcdn.com/artworks-XmMxPQY7i54j3OBb-2wnVcw-t500x500.jpg"
             alt=""
             className="w-full h-50 object-cover transition-transform duration-300 hover:scale-120"
-          />{" "}
+          />{' '}
           <img
             src="https://i.pinimg.com/736x/b3/9d/2a/b39d2a63c02d18535f3e0058b7304bb1.jpg"
             alt=""
             className="w-full h-50 object-cover transition-transform duration-300 hover:scale-120"
-          />{" "}
+          />{' '}
           <img
             src="https://images7.alphacoders.com/476/476227.jpg"
             alt=""

@@ -1,18 +1,18 @@
-import AllPostProfile from "@/routes/AllPostProfile";
-import MediaProfile from "@/routes/MediaProfile";
-import { useState } from "react";
+import AllPostProfile from '@/routes/AllPostProfile';
+import MediaProfile from '@/routes/MediaProfile';
+import { useState } from 'react';
 
 const ProfileMenu = () => {
-  const [button, setButton] = useState("All Post");
+  const [button, setButton] = useState('All Post');
   return (
     <div>
       <div className="flex justify-center gap-5">
-        {["All Post", "Media Profile"].map((field, i) => (
+        {['All Post', 'Media Profile'].map((field, i) => (
           <button
             key={i}
             onClick={() => setButton(field)}
             className={`text-xl font-semibold rounded-none w-90 cursor-pointer  ${
-              button == field ? "border-b-2 border-[#4CAF50]" : ""
+              button == field ? 'border-b-2 border-[#4CAF50]' : ''
             }`}
           >
             {field}
@@ -20,7 +20,7 @@ const ProfileMenu = () => {
         ))}
       </div>
 
-      {button == "All Post" ? <AllPostProfile /> : <MediaProfile />}
+      {button == 'All Post' ? <AllPostProfile /> : <MediaProfile />}
     </div>
   );
 };

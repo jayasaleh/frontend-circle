@@ -1,30 +1,30 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Copy } from "lucide-react";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Copy } from 'lucide-react';
 
 const tabs = [
   {
-    name: "pnpm",
-    value: "pnpm",
-    content: "pnpm dlx shadcn@latest add tabs",
+    name: 'pnpm',
+    value: 'pnpm',
+    content: 'pnpm dlx shadcn@latest add tabs',
     count: 9,
   },
   {
-    name: "npm",
-    value: "npm",
-    content: "npx shadcn@latest add tabs",
+    name: 'npm',
+    value: 'npm',
+    content: 'npx shadcn@latest add tabs',
   },
   {
-    name: "yarn",
-    value: "yarn",
-    content: "npx shadcn@latest add tabs",
+    name: 'yarn',
+    value: 'yarn',
+    content: 'npx shadcn@latest add tabs',
     count: 3,
   },
   {
-    name: "bun",
-    value: "bun",
-    content: "bunx --bun shadcn@latest add tabs",
+    name: 'bun',
+    value: 'bun',
+    content: 'bunx --bun shadcn@latest add tabs',
   },
 ];
 
@@ -38,7 +38,7 @@ export default function TabsWithBadgeDemo() {
             value={tab.value}
             className="rounded-none bg-background h-full data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary"
           >
-            <code className="text-[13px]">{tab.name}</code>{" "}
+            <code className="text-[13px]">{tab.name}</code>{' '}
             {!!tab.count && (
               <Badge
                 variant="secondary"

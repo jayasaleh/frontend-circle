@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Camera, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Camera, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function ProfileEditDialog() {
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState("Jaya Saleh");
-  const [username, setUsername] = useState("jayasaleh");
-  const [bio, setBio] = useState("Halo guys welcome to my profile huehue");
+  const [name, setName] = useState('Jaya Saleh');
+  const [username, setUsername] = useState('jayasaleh');
+  const [bio, setBio] = useState('Halo guys welcome to my profile huehue');
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

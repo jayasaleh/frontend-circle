@@ -1,5 +1,7 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { hydrate } from '@tanstack/react-query';
+import { boolean } from 'zod';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 type User = {
   id: number;
   email: string;
@@ -12,9 +14,11 @@ type User = {
 type AuthState = {
   user: User | null;
   token: string | null;
+  _hasHydrated: boolean;
   setUser: (user: User) => void;
   setToken: (token: string) => void;
   logout: () => void;
+  setHasHydrated: (hydrated: boolean) => void;
 };
 
 export const useAuthLogin = create<AuthState>()(
@@ -22,6 +26,11 @@ export const useAuthLogin = create<AuthState>()(
     (set) => ({
       user: null,
       token: null,
+      _hasHydrated: false,
+
+      setHasHydrated: (hydrated: any) => {
+        set({ _hasHydrated: hydrated });
+      },
       setUser: (user) => set({ user }),
       setToken: (token) => set({ token }),
       logout: () => {
@@ -29,8 +38,10 @@ export const useAuthLogin = create<AuthState>()(
       },
     }),
     {
-      name: "auth-storage",
-      partialize: (state) => ({ user: state.user, token: state.token }),
+      name: 'auth-storage',
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
     }
   )
 );

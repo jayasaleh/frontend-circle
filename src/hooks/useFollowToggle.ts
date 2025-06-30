@@ -1,8 +1,8 @@
-import { useAuthLogin } from "@/stores/authLogin";
-import { FollowToggleProps } from "@/types/toggleFollow";
-import { api } from "@/utils/api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useAuthLogin } from '@/stores/authLogin';
+import { FollowToggleProps } from '@/types/toggleFollow';
+import { api } from '@/utils/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 
 export const useFollowToggle = ({
   followId,
@@ -23,11 +23,12 @@ export const useFollowToggle = ({
     },
     onSuccess: () => {
       setIsFollowing(true);
-      queryClient.invalidateQueries({ queryKey: ["userProfile", followId] }); //userId digunakan untuk membuat queryKey menjadi spesifik
+      queryClient.invalidateQueries({ queryKey: ['userProfile', followId] }); //userId digunakan untuk membuat queryKey menjadi spesifik
       // ['userProfile', 5] adalah kunci untuk cache data profil user dengan ID 5.
-      queryClient.invalidateQueries({ queryKey: ["feeds"] });
-      queryClient.invalidateQueries({ queryKey: ["following"] });
-      queryClient.invalidateQueries({ queryKey: ["suggestions"] });
+      queryClient.invalidateQueries({ queryKey: ['feeds'] });
+      queryClient.invalidateQueries({ queryKey: ['following'] });
+      queryClient.invalidateQueries({ queryKey: ['suggestions'] });
+      queryClient.invalidateQueries({ queryKey: ['followCount'] });
     },
     onError: (error: Error) => {
       setIsFollowing(false);
@@ -45,9 +46,10 @@ export const useFollowToggle = ({
     },
     onSuccess: () => {
       setIsFollowing(false);
-      queryClient.invalidateQueries({ queryKey: ["userProfile", followId] }); //userId digunakan untuk membuat queryKey menjadi spesifik
-      queryClient.invalidateQueries({ queryKey: ["following"] });
-      queryClient.invalidateQueries({ queryKey: ["followers"] });
+      queryClient.invalidateQueries({ queryKey: ['userProfile', followId] }); //userId digunakan untuk membuat queryKey menjadi spesifik
+      queryClient.invalidateQueries({ queryKey: ['following'] });
+      queryClient.invalidateQueries({ queryKey: ['followers'] });
+      queryClient.invalidateQueries({ queryKey: ['followCount'] });
     },
     onError: () => {
       setIsFollowing(true);

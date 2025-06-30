@@ -1,5 +1,5 @@
-import { LikeComment } from "./likeComment";
-import { User } from "./user";
+import { LikeComment } from './likeComment';
+import { User } from './user';
 
 export type Comment = {
   id: number;

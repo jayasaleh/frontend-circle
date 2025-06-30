@@ -1,12 +1,12 @@
-import { useGetFollowing } from "@/hooks/useGetFollowing";
-import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { useGetFollowers } from "@/hooks/useGetFollowers";
-import { PiSpinner } from "react-icons/pi";
-import FollowToggleButton from "./components/FollowToggleButton";
+import { useGetFollowing } from '@/hooks/useGetFollowing';
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
+import { useGetFollowers } from '@/hooks/useGetFollowers';
+import { PiSpinner } from 'react-icons/pi';
+import FollowToggleButton from './components/FollowToggleButton';
 function Followers() {
   const { data: followers, isLoading, isError } = useGetFollowers();
 
@@ -57,7 +57,7 @@ function Followers() {
                     <AvatarImage
                       src={
                         follow.follower.photo === undefined
-                          ? ""
+                          ? ''
                           : follow.follower.photo
                       }
                       alt={follow.follower.name}

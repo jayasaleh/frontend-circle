@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { ImageIcon, Loader2, Plus, Trash2, X } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useAuthLogin } from "@/stores/authLogin";
-import { usePostTweet } from "@/hooks/usePostTweet";
-import toast from "react-hot-toast";
-import { useForm } from "react-hook-form";
-import { TweetForm } from "@/types/tweetForm";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { useRef, useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { ImageIcon, Loader2, Plus, Trash2, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { useAuthLogin } from '@/stores/authLogin';
+import { usePostTweet } from '@/hooks/usePostTweet';
+import toast from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
+import { TweetForm } from '@/types/tweetForm';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 
 export default function CreatePostModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [postContent, setPostContent] = useState("");
+  const [postContent, setPostContent] = useState('');
   const imageInputRef = useRef<HTMLInputElement>(null);
   const { register, handleSubmit, setValue, reset } = useForm<TweetForm>();
   const { user } = useAuthLogin();
@@ -25,7 +25,7 @@ export default function CreatePostModal() {
   );
   const { mutate: postTweet, isPending } = usePostTweet({
     onSuccess: () => {
-      toast.success("Berhasil posting tweet");
+      toast.success('Berhasil posting tweet');
       reset();
 
       setIsOpen(false);
@@ -39,11 +39,11 @@ export default function CreatePostModal() {
   }
   const onSubmit = (data: TweetForm) => {
     const formData = new FormData();
-    formData.append("content", postContent);
-    formData.append("userId", String(user.id));
+    formData.append('content', postContent);
+    formData.append('userId', String(user.id));
 
     if (data.images) {
-      formData.append("images", data.images);
+      formData.append('images', data.images);
     }
     postTweet(formData);
   };
@@ -51,17 +51,17 @@ export default function CreatePostModal() {
     const file = event.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setValue("images", file);
+      setValue('images', file);
       setPreviewImageModal(imageUrl);
     }
   };
   const handleRemoveImage = () => {
     setPreviewImageModal(null); // Sembunyikan preview
-    setValue("images", undefined); // Hapus file dari state form
+    setValue('images', undefined); // Hapus file dari state form
 
     // Reset input file agar bisa memilih file yang sama lagi
     if (imageInputRef.current) {
-      imageInputRef.current.value = "";
+      imageInputRef.current.value = '';
     }
   };
 
@@ -95,12 +95,12 @@ export default function CreatePostModal() {
               <div
                 contentEditable
                 className={cn(
-                  "w-full min-h-[80px] outline-none bg-transparent text-white placeholder:text-gray-500",
+                  'w-full min-h-[80px] outline-none bg-transparent text-white placeholder:text-gray-500',
                   !postContent &&
                     "before:content-['What_is_happening?!'] before:text-gray-500"
                 )}
                 onInput={(e) =>
-                  setPostContent(e.currentTarget.textContent || "")
+                  setPostContent(e.currentTarget.textContent || '')
                 }
                 id="content"
               />
@@ -146,7 +146,7 @@ export default function CreatePostModal() {
               {isPending ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                "Post"
+                'Post'
               )}
             </Button>
           </div>

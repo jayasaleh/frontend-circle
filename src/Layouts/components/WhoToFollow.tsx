@@ -1,9 +1,9 @@
-import FollowToggleButton from "@/components/follow/components/FollowToggleButton";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useSuggestUsers } from "@/hooks/useSuggestedUsers";
-import { PiSpinner } from "react-icons/pi";
+import FollowToggleButton from '@/components/follow/components/FollowToggleButton';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useSuggestUsers } from '@/hooks/useSuggestedUsers';
+import { PiSpinner } from 'react-icons/pi';
 
 function WhoToFollow() {
   const { data: suggestUsers, isLoading, isError } = useSuggestUsers();
@@ -66,7 +66,7 @@ function WhoToFollow() {
                   <div>
                     <p className="text-sm font-medium">{follow.name}</p>
                     <p className="text-xs text-muted-foreground">
-                      {"@" + follow.username}
+                      {'@' + follow.username}
                     </p>
                   </div>
                 </div>

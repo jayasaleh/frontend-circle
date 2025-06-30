@@ -1,7 +1,7 @@
-import { useAuthLogin } from "@/stores/authLogin";
-import { api } from "@/utils/api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { error } from "console";
+import { useAuthLogin } from '@/stores/authLogin';
+import { api } from '@/utils/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { error } from 'console';
 
 interface PostTweetOption {
   onSuccess: () => void;
@@ -19,16 +19,16 @@ export const usePostTweet = (options?: PostTweetOption) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (newTweet: FormData) => {
-      const response = await api.post("/tweet", newTweet, {
+      const response = await api.post('/tweet', newTweet, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["feeds"] });
+      queryClient.invalidateQueries({ queryKey: ['feeds'] });
       options?.onSuccess?.();
     },
     onError: (error: Error) => {

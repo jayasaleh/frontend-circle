@@ -1,13 +1,17 @@
-import ProfileMenu from "@/components/profile/ProfileMenu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { useAuthLogin } from "@/stores/authLogin";
+import ProfileMenu from '@/components/profile/ProfileMenu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import UserFollowCounts from '@/components/UserFollowCounts';
+import { useAuthLogin } from '@/stores/authLogin';
 
 function Profile() {
   const { user } = useAuthLogin();
+  if (!user) {
+    return;
+  }
   return (
     <div className="w-full border-x h-full ">
-      <div className="flex flex-col w-full md:max-w-[600px] mx-auto">
+      <div className="flex flex-col w-full md:max-w-[610px] mx-auto">
         <div className="w-full">
           <div className="relative p-2">
             {/* Background Image */}
@@ -16,11 +20,8 @@ function Profile() {
             {/* Profile Avatar - Positioned to overlap the background */}
             <div className="absolute -bottom-9 left-4">
               <Avatar className="h-20 w-20 ">
-                <AvatarImage
-                  src="https://i.pinimg.com/736x/40/c4/9d/40c49df48aeeac3b9dda97e66e7312de.jpg"
-                  alt="Profile"
-                />
-                <AvatarFallback>JS</AvatarFallback>
+                <AvatarImage src={user.photo} alt="Profile" />
+                <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
               </Avatar>
             </div>
           </div>
@@ -42,18 +43,7 @@ function Profile() {
               </p>
               <p className="text-sm">{user?.bio}</p>
               <div className="flex justify-between w-full mt-2 mb-4">
-                <div className="text-center">
-                  <p className="font-bold">254</p>
-                  <p className="text-xs text-muted-foreground">Posts</p>
-                </div>
-                <div className="text-center">
-                  <p className="font-bold">14.2K</p>
-                  <p className="text-xs text-muted-foreground">Followers</p>
-                </div>
-                <div className="text-center">
-                  <p className="font-bold">1.5K</p>
-                  <p className="text-xs text-muted-foreground">Following</p>
-                </div>
+                <UserFollowCounts userId={user.id} />
               </div>
             </div>
           </div>

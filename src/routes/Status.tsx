@@ -1,10 +1,10 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { AvatarFallback } from "@radix-ui/react-avatar";
-import { Heart, Image, ImageIcon, MessageSquare } from "lucide-react";
-import React from "react";
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { AvatarFallback } from '@radix-ui/react-avatar';
+import { Heart, Image, ImageIcon, MessageSquare } from 'lucide-react';
+import React from 'react';
 
 function Status() {
   return (
@@ -12,7 +12,7 @@ function Status() {
       <header className=" flex items-center ">
         <div className="flex items-center">
           <Button variant="ghost" className="font-bold">
-            <span className="text-2xl">←</span>{" "}
+            <span className="text-2xl">←</span>{' '}
             <span className="text-xl"> Status</span>
           </Button>
         </div>
@@ -31,7 +31,7 @@ function Status() {
               <span className="font-bold dark:text-white text-xl ">
                 Jaya Saleh
               </span>
-              <span className="text-gray-500 text-sm ">@jayasaleh</span>{" "}
+              <span className="text-gray-500 text-sm ">@jayasaleh</span>{' '}
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ function Status() {
               <span className="font-bold dark:text-white text-sm ">
                 Vulgrim
               </span>
-              <span className="text-gray-500 text-sm ">@vgrim123</span>{" "}
+              <span className="text-gray-500 text-sm ">@vgrim123</span>{' '}
               <span className="text-gray-500">•</span>
               <span className="text-gray-500 text-sm">1h</span>
             </div>
@@ -133,7 +133,7 @@ function Status() {
               <span className="font-bold dark:text-white text-sm ">
                 Dani Jackson
               </span>
-              <span className="text-gray-500 text-sm ">@danij</span>{" "}
+              <span className="text-gray-500 text-sm ">@danij</span>{' '}
               <span className="text-gray-500">•</span>
               <span className="text-gray-500 text-sm">1h</span>
             </div>

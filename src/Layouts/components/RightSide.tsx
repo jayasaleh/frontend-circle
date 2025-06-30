@@ -1,19 +1,22 @@
-import ProfileEditDialog from "@/Layouts/components/ProfileEditDialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { useAuthLogin } from "@/stores/authLogin";
-import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
-import { PiInstagramLogoFill } from "react-icons/pi";
-import { useLocation } from "react-router-dom";
-import WhoToFollow from "./WhoToFollow";
+import ProfileEditDialog from '@/Layouts/components/ProfileEditDialog';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { useAuthLogin } from '@/stores/authLogin';
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { PiInstagramLogoFill } from 'react-icons/pi';
+import { useLocation } from 'react-router-dom';
+import WhoToFollow from './WhoToFollow';
+import UserFollowCounts from '@/components/UserFollowCounts';
 
 function RightSide() {
   const location = useLocation();
 
   const { user } = useAuthLogin();
-
+  if (!user) {
+    return;
+  }
   const { isLoading } = useCurrentUser();
   if (isLoading)
     return (
@@ -27,8 +30,8 @@ function RightSide() {
   return (
     <div className="grid gap-2 grid-cols-1 sticky top-0 pl-2 pt-2">
       {/* Profile Card */}
-      {location.pathname !== "/profile" &&
-        location.pathname !== "/media-profile" && (
+      {location.pathname !== '/profile' &&
+        location.pathname !== '/media-profile' && (
           <Card>
             <div className="relative p-2 ">
               {/* Background Image */}
@@ -56,8 +59,9 @@ function RightSide() {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-2">
                   <p className="text-xs">{user?.bio}</p>
+                  <UserFollowCounts userId={user.id} />
                   <div className="flex  justify-between w-full mt-1 mb-1"></div>
                 </div>
               </div>

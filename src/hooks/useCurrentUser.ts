@@ -1,6 +1,6 @@
-import { useAuthLogin } from "@/stores/authLogin";
-import { api } from "@/utils/api";
-import { useQuery } from "@tanstack/react-query";
+import { useAuthLogin } from '@/stores/authLogin';
+import { api } from '@/utils/api';
+import { useQuery } from '@tanstack/react-query';
 
 type User = {
   id: number;
@@ -13,9 +13,9 @@ export const useCurrentUser = () => {
   const { token, setUser, logout } = useAuthLogin();
 
   return useQuery<User>({
-    queryKey: ["current-user"],
+    queryKey: ['current-user'],
     queryFn: async () => {
-      const res = await api.get("/me", {
+      const res = await api.get('/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
