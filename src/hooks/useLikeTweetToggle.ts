@@ -26,6 +26,7 @@ export const useLikeButton = (tweetId: number) => {
       queryClient.invalidateQueries({ queryKey: ['likeStatus', tweetId] });
       queryClient.invalidateQueries({ queryKey: ['feeds'] });
       queryClient.invalidateQueries({ queryKey: ['detail-tweet', tweetId] });
+      queryClient.invalidateQueries({ queryKey: ['tweet-profile'] });
     },
     onError: (error: Error) => toast.error(error.message),
   });
@@ -37,6 +38,7 @@ export const useLikeButton = (tweetId: number) => {
       queryClient.invalidateQueries({ queryKey: ['likeStatus', tweetId] });
       queryClient.invalidateQueries({ queryKey: ['feeds'] });
       queryClient.invalidateQueries({ queryKey: ['detail-tweet', tweetId] });
+      queryClient.invalidateQueries({ queryKey: ['tweet-profile'] });
     },
     onError: (error: Error) => toast.error(error.message),
   });

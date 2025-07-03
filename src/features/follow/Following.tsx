@@ -1,10 +1,20 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useGetFollowing } from '@/hooks/useGetFollowing';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../components/ui/avatar';
 import FollowToggleButton from './components/FollowToggleButton';
 function Following() {
   const { data: following, isLoading, isError } = useGetFollowing();
-  if (isLoading) return;
+  if (isLoading) {
+    return (
+      <div className="h-30 flex justify-center items-center">
+        <p>Getting Following data...</p>
+      </div>
+    );
+  }
   if (!following) {
     return (
       <div className="mt-3">
@@ -19,6 +29,17 @@ function Following() {
       </div>
     );
   }
+  if (following.length === 0) {
+    return (
+      <div className="mt-3">
+        <div className=" h-30 flex justify-center items-center">
+          <p className="text-md text-center text-gray-600">
+            <i>~ Belum ada yang di Follow ~</i>
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <div className="mt-3">
@@ -26,7 +47,7 @@ function Following() {
           <CardHeader></CardHeader>
           <CardContent className="space-y-2">
             {following?.map((follow) => (
-              <form
+              <div
                 className="flex items-center justify-between"
                 key={follow.followee.id}
               >
@@ -53,7 +74,7 @@ function Following() {
                   followId={follow.followeeId}
                   initialIsFollowing={true}
                 />
-              </form>
+              </div>
             ))}
           </CardContent>
         </Card>

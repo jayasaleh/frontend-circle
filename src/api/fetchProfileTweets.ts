@@ -1,12 +1,9 @@
 import { TweetProfile } from '@/types/tweetProfile';
 import { api } from '@/utils/api';
 
-interface TweetProfileApiResponse {
-  data: TweetProfile[];
-}
 export const fetchProfileTweets = async (
   userId: number
-): Promise<TweetProfileApiResponse> => {
+): Promise<TweetProfile[]> => {
   try {
     const response = await api.get(`/users/${userId}/profile-tweet`);
     return response.data.data;

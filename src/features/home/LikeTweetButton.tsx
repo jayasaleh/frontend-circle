@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Button } from '../ui/button';
+import { Button } from '../../components/ui/button';
 import { Heart, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLikeButton } from '@/hooks/useLikeTweetToggle';
@@ -14,7 +14,6 @@ interface LikeButtonProps {
 const LikeButton = ({ tweetId }: LikeButtonProps) => {
   const { isLiked, isLoading, doLike, doUnlike } = useLikeButton(tweetId);
 
-  // Handler untuk klik tombol
   const handleLikeToggle = () => {
     if (isLiked) {
       doUnlike(tweetId);

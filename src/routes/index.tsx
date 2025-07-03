@@ -1,23 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom';
-import AuthLogin from './AuthLogin';
-import AuthRegister from './AuthRegister';
+import AuthLogin from '../Layouts/auth/AuthLogin';
+import AuthRegister from '../Layouts/auth/AuthRegister';
 import Beranda from './Beranda';
 
-import Follows from './Follows';
-import ForgotPassword from './ForgotPassword';
-import MediaProfile from './MediaProfile';
-import Profile from './Profile';
-import ProtectedRoute from './ProtectedRoute';
-import Search from './Search';
-import Status from './Status';
 import Layout from '@/Layouts/Layout';
-import Detail from './DetailTweet';
 import DetailTweet from './DetailTweet';
+import Follows from './Follows';
+import ForgotPassword from '../Layouts/auth/ForgotPassword';
+import Profile from './Profile';
+import ProfileUser from './ProfileUser';
+import ProtectedRoute from './ProtectedRoute';
+import Search from '../features/search/Search';
+import Status from './Status';
+import AuthLayout from '@/Layouts/AuthLayout';
 
 let router = createBrowserRouter([
   {
     Component: ProtectedRoute,
-
     children: [
       {
         element: <Layout />,
@@ -47,22 +46,30 @@ let router = createBrowserRouter([
             path: '/status',
             Component: Status,
           },
+          {
+            path: '/profile/:id',
+            Component: ProfileUser,
+          },
         ],
       },
     ],
   },
-
   {
-    path: '/login',
-    Component: AuthLogin,
-  },
-  {
-    path: '/register',
-    Component: AuthRegister,
-  },
-  {
-    path: '/forgotpassword',
-    Component: ForgotPassword,
+    Component: AuthLayout,
+    children: [
+      {
+        path: '/login',
+        Component: AuthLogin,
+      },
+      {
+        path: '/register',
+        Component: AuthRegister,
+      },
+      {
+        path: '/forgotpassword',
+        Component: ForgotPassword,
+      },
+    ],
   },
 ]);
 export default router;

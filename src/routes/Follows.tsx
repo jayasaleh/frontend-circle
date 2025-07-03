@@ -1,4 +1,4 @@
-import FollowMenu from '@/components/follow/FollowMenu';
+import FollowMenu from '@/features/follow/FollowMenu';
 
 function Follows() {
   return (

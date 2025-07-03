@@ -14,7 +14,7 @@ const FollowToggleButton = ({
     <Button
       onClick={handleToggleFollow}
       disabled={isLoading}
-      variant={isFollowing ? 'secondary' : 'default'}
+      variant="secondary"
       size={'sm'}
       className="cursor-pointer"
     >

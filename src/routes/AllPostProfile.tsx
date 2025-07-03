@@ -1,131 +1,104 @@
+import LikeButton from '@/features/home/LikeTweetButton';
+import MoreOption from '@/features/home/MoreOption';
+import { TweetCardSkeleton } from '@/components/SkeletonUiTweet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Heart, MessageSquare } from 'lucide-react';
-import React from 'react';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { useGetTweetProfile } from '@/hooks/useGetTweetProfile';
+import { FormatDate } from '@/lib/DateTime';
+import { useAuthLogin } from '@/stores/authLogin';
+import { MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-function AllPostProfile() {
+function AllPostProfile({ userId }: { userId: number }) {
+  const { user } = useAuthLogin();
+  if (!user) {
+    return;
+  }
+  const { data: tweetsFeed, isLoading } = useGetTweetProfile(userId);
+
+  if (isLoading) {
+    return <TweetCardSkeleton />;
+  }
+  if (!tweetsFeed) {
+    return (
+      <div className="flex-col gap-5">
+        <p>tidak ada data</p>
+      </div>
+    );
+  }
+  if (tweetsFeed.length === 0) {
+    return (
+      <div className="flex h-32 items-center justify-center">
+        <i>~ belum ada Tweet ~</i>
+      </div>
+    );
+  }
   return (
-    <div className="">
-      <div className="p-2 flex-col gap-5">
-        <div className="flex gap-3 ">
+    <div className="flex-col gap-5">
+      {tweetsFeed.map((tweet) => (
+        <div className="flex gap-3 border-b-1 p-3" key={tweet.id}>
           <Avatar className="h-10 w-10">
-            <AvatarImage
-              src="https://i.pinimg.com/736x/40/c4/9d/40c49df48aeeac3b9dda97e66e7312de.jpg"
-              alt="Your Profile"
-            />
-            <AvatarFallback>JS</AvatarFallback>
-          </Avatar>
-
-          <div className="flex-1">
-            <div className="flex gap-1 items-center gap-y-2">
-              <span className="font-bold dark:text-white text-sm ">
-                Jaya Saleh
-              </span>
-              <span className="text-gray-500 text-sm ">@jayasaleh</span>{' '}
-              <span className="text-gray-500">•</span>
-              <span className="text-gray-500 text-sm">1h</span>
-            </div>
-            <p className="text-justify text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-              quis aut eos iste consequatur. Tempora quos id saepe nesciunt
-              quam, assumenda quod, laborum eveniet recusandae quia, beatae
-              quidem nam laboriosam!
-            </p>
-            <div className="flex items-center gap-4 mt-2 text-gray-400">
-              <button className="flex items-center gap-1 hover:text-[#10b981]">
-                <Heart className="w-4 h-4" />
-                <span>36</span>
-              </button>
-              <button className="flex items-center gap-1 hover:text-[#10b981]">
-                <MessageSquare className="w-4 h-4" />
-                <span>38 Replies</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <hr className="mt-3 mb-3" />
-
-        <div className="flex gap-3 ">
-          <Avatar className="h-10 w-10">
-            <AvatarImage
-              src="https://i.pinimg.com/736x/40/c4/9d/40c49df48aeeac3b9dda97e66e7312de.jpg"
-              alt="Your Profile"
-            />
-            <AvatarFallback>JS</AvatarFallback>
+            <AvatarImage src={tweet.user.photo} alt="Your Profile" />
+            <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="flex-1">
             <div className="flex gap-1 items-center gap-y-2">
               <span className="font-bold dark:text-white text-sm ">
-                Jaya Saleh
+                {tweet.user.name}
               </span>
-              <span className="text-gray-500 text-sm ">@jayasaleh</span>{' '}
-              <span className="text-gray-500">•</span>
-              <span className="text-gray-500 text-sm">1h</span>
-            </div>
-            <p className="text-justify text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-              quis aut eos iste consequatur. Tempora quos id saepe nesciunt
-              quam, assumenda quod, laborum eveniet recusandae quia, beatae
-              quidem nam laboriosam!
-            </p>
-            <div className="flex items-center gap-4 mt-2 text-gray-400">
-              <button className="flex items-center gap-1 hover:text-[#10b981]">
-                <Heart className="w-4 h-4" />
-                <span>36</span>
-              </button>
-              <button className="flex items-center gap-1 hover:text-[#10b981]">
-                <MessageSquare className="w-4 h-4" />
-                <span>38 Replies</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <hr className="mt-3 mb-3" />
-        <div className="flex gap-3 ">
-          <Avatar className="h-10 w-10">
-            <AvatarImage
-              src="https://i.pinimg.com/736x/40/c4/9d/40c49df48aeeac3b9dda97e66e7312de.jpg"
-              alt="Your Profile"
-            />
-            <AvatarFallback>JS</AvatarFallback>
-          </Avatar>
-          <div className="flex-1">
-            <div className="flex gap-1 items-center gap-y-2">
-              <span className="font-bold text-sm dark:text-white ">
-                Mulianto
+              <span className="text-gray-500 text-sm ">
+                @{tweet.user.username}
               </span>
-              <span className="text-gray-500 text-sm ">@Mulianto</span>
               <span className="text-gray-500">•</span>
-              <span className="text-gray-500 text-sm">1h</span>
+              <span className="text-gray-500 text-sm">
+                {FormatDate(tweet.createdAt)}
+              </span>
             </div>
-            <p className="text-justify text-sm ">
-              Lorem ipsum dolor sit picture
-            </p>
+            <div className="grid grid-cols-1 gap-2">
+              <p className="text-justify text-sm dark:text-gray-300 text-gray-600">
+                {tweet.content}
+              </p>
+              {tweet.images && (
+                <Dialog>
+                  <DialogTrigger>
+                    <div className="w-1/2">
+                      <img
+                        src={tweet.images}
+                        className="rounded-md w-full"
+                        alt="Tweet image"
+                      />
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <img
+                      src={tweet.images}
+                      className="rounded-md w-full"
+                      alt="Tweet image"
+                    />
+                  </DialogContent>
+                </Dialog>
+              )}
+            </div>
 
-            <div className="w-96">
-              <Link to="/status-foto" className="hover:opacity-50 ">
-                <img
-                  src="https://jagogame.id/wp-content/uploads/2024/10/Yu-Gi-Oh-Early-Days-Collection-2.jpg"
-                  alt="foto"
-                  className="w-fit"
-                />
+            <div className="flex items-center gap-6 mt-2 text-gray-400">
+              <div className="flex items-center gap-1.5">
+                <LikeButton tweetId={tweet.id} />
+                <span className="text-sm">{tweet._count.likes}</span>
+              </div>
+              <Link
+                to={`/detail/${tweet.id}`}
+                className="flex items-center gap-1 hover:text-[#10b981]"
+              >
+                <MessageSquare size={20} />
+                <span>{tweet._count.comments} Replies</span>
               </Link>
             </div>
-
-            <div className="flex items-center gap-4 mt-2 text-gray-400">
-              <button className="flex items-center gap-1 hover:text-[#10b981]">
-                <Heart className="w-4 h-4" />
-                <span>2183</span>
-              </button>
-              <button className="flex items-center gap-1 hover:text-[#10b981]">
-                <MessageSquare className="w-4 h-4" />
-                <span>253 Replies</span>
-              </button>
-            </div>
+          </div>
+          <div>
+            {user.id === tweet.userId ? <MoreOption tweetId={tweet.id} /> : ''}
           </div>
         </div>
-        <hr className="mt-3 mb-3" />
-      </div>
+      ))}
     </div>
   );
 }

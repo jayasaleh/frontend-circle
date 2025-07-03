@@ -1,11 +1,12 @@
 import { TweetCommentDTO } from '@/schema/schemaTweetComment';
 import { useAuthLogin } from '@/stores/authLogin';
+import { TweetDetailWithComments } from '@/types/tweetDetailWithComments';
 import { api } from '@/utils/api';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetDetailTweet = (tweetId: number) => {
   const { token } = useAuthLogin();
-  return useQuery<TweetCommentDTO>({
+  return useQuery<TweetDetailWithComments>({
     queryKey: ['detail-tweet', tweetId],
     queryFn: async ({ queryKey }) => {
       const [_key, tweetId] = queryKey;

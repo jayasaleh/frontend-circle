@@ -1,4 +1,4 @@
-import ProfileMenu from '@/components/profile/ProfileMenu';
+import ProfileMenu from '@/features/profile/ProfileMenu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import UserFollowCounts from '@/components/UserFollowCounts';
@@ -49,7 +49,7 @@ function Profile() {
           </div>
         </div>
 
-        <ProfileMenu />
+        <ProfileMenu userId={user.id} />
       </div>
     </div>
   );

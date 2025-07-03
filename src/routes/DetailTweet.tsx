@@ -1,6 +1,7 @@
-import LikeButton from '@/components/home/LikeTweetButton';
+import LikeButton from '@/features/home/LikeTweetButton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useGetDetailTweet } from '@/hooks/useGetDetailTweet';
 import { usePostComment } from '@/hooks/usePostComment';
 import { FormatDate } from '@/lib/DateTime';
@@ -67,6 +68,26 @@ function DetailTweet() {
               {tweetDetails.content}
             </p>
           </div>
+          {tweetDetails.images && (
+            <Dialog>
+              <DialogTrigger>
+                <div className="w-1/2">
+                  <img
+                    src={tweetDetails.images}
+                    className="rounded-md w-full"
+                    alt="Tweet image"
+                  />
+                </div>
+              </DialogTrigger>
+              <DialogContent>
+                <img
+                  src={tweetDetails.images}
+                  className="rounded-md w-full"
+                  alt="Tweet image"
+                />
+              </DialogContent>
+            </Dialog>
+          )}
 
           <div className="flex items-center gap-6 mt-2 text-gray-400">
             <LikeButton tweetId={tweetDetails.id} />

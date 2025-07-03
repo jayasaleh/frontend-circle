@@ -27,7 +27,8 @@ export const useFollowToggle = ({
       // ['userProfile', 5] adalah kunci untuk cache data profil user dengan ID 5.
       queryClient.invalidateQueries({ queryKey: ['feeds'] });
       queryClient.invalidateQueries({ queryKey: ['following'] });
-      queryClient.invalidateQueries({ queryKey: ['suggestions'] });
+      queryClient.invalidateQueries({ queryKey: ['searchTerm'] });
+
       queryClient.invalidateQueries({ queryKey: ['followCount'] });
     },
     onError: (error: Error) => {
@@ -50,6 +51,7 @@ export const useFollowToggle = ({
       queryClient.invalidateQueries({ queryKey: ['following'] });
       queryClient.invalidateQueries({ queryKey: ['followers'] });
       queryClient.invalidateQueries({ queryKey: ['followCount'] });
+      queryClient.invalidateQueries({ queryKey: ['searchTerm'] });
     },
     onError: () => {
       setIsFollowing(true);

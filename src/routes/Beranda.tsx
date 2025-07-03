@@ -1,5 +1,5 @@
 import { FormatDate } from '@/lib/DateTime';
-import MoreOption from '@/components/home/MoreOption';
+import MoreOption from '@/features/home/MoreOption';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
@@ -16,8 +16,9 @@ import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import LikeButton from '@/components/home/LikeTweetButton';
+import LikeButton from '@/features/home/LikeTweetButton';
 import { Helmet } from 'react-helmet-async';
+import { HomePageSkeleton } from '@/features/home/components/HomeSkeletonCard';
 
 function Beranda() {
   const { register, handleSubmit, setValue, reset } = useForm<TweetForm>();
@@ -43,17 +44,11 @@ function Beranda() {
   const { data: tweetsFeed, isLoading, isError } = useGetTweets();
 
   if (!user) {
-    return <p>Loading user...</p>; // ✅ return elemen, bukan "return;" saja
+    return <p>Loading user...</p>;
   }
 
   if (isLoading) {
-    return (
-      <div className="flex gap-3 border-b-1 p-3">
-        <Skeleton className="h-[150px] w-full rounded-xl" />
-        <Skeleton className="h-[70px] w-full rounded-xl" />
-        <Skeleton className="h-[70px] w-full rounded-xl" />
-      </div>
-    );
+    return <HomePageSkeleton />;
   }
 
   if (!tweetsFeed) {
@@ -152,18 +147,22 @@ function Beranda() {
         <div className="flex-col gap-5">
           {tweetsFeed.map((tweet) => (
             <div className="flex gap-3 border-b-1 p-3" key={tweet.id}>
-              <Avatar className="h-10 w-10">
-                <AvatarImage src={tweet.user.photo} alt="Your Profile" />
-                <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
-              </Avatar>
+              <Link to={`/profile/${tweet.user.id}`}>
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src={tweet.user.photo} alt="Your Profile" />
+                  <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+              </Link>
               <div className="flex-1">
                 <div className="flex gap-1 items-center gap-y-2">
-                  <span className="font-bold dark:text-white text-sm ">
-                    {tweet.user.name}
-                  </span>
-                  <span className="text-gray-500 text-sm ">
-                    @{tweet.user.username}
-                  </span>
+                  <Link to={`/profile/${tweet.user.id}`}>
+                    <span className="font-bold dark:text-white text-sm ">
+                      {tweet.user.name}
+                    </span>
+                    <span className="text-gray-500 text-sm ">
+                      @{tweet.user.username}
+                    </span>
+                  </Link>
                   <span className="text-gray-500">•</span>
                   <span className="text-gray-500 text-sm">
                     {FormatDate(tweet.createdAt)}

@@ -1,10 +1,8 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { AvatarFallback } from '@radix-ui/react-avatar';
-import { Heart, Image, ImageIcon, MessageSquare } from 'lucide-react';
-import React from 'react';
+import { Heart, ImageIcon, MessageSquare } from 'lucide-react';
 
 function Status() {
   return (

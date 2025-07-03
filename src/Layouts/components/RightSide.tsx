@@ -12,20 +12,16 @@ import UserFollowCounts from '@/components/UserFollowCounts';
 
 function RightSide() {
   const location = useLocation();
+  const { user, _hasHydrated } = useAuthLogin();
 
-  const { user } = useAuthLogin();
-  if (!user) {
-    return;
-  }
-  const { isLoading } = useCurrentUser();
-  if (isLoading)
+  if (!_hasHydrated || !user) {
     return (
       <div className="grid gap-2 grid-cols-1 p-2 sticky top-0 ">
+        <Skeleton className="h-[220px] w-full rounded-xl" />
         <Skeleton className="h-[150px] w-full rounded-xl" />
-        <Skeleton className="h-[70px] w-full rounded-xl" />
-        <Skeleton className="h-[70px] w-full rounded-xl" />
       </div>
     );
+  }
 
   return (
     <div className="grid gap-2 grid-cols-1 sticky top-0 pl-2 pt-2">
@@ -39,8 +35,12 @@ function RightSide() {
 
               {/* Profile Avatar - Positioned to overlap the background */}
               <div className="absolute -bottom-5 left-4">
-                <Avatar className="h-16 w-16 border-1 border-background">
-                  <AvatarImage src={user?.photo} alt="Profile" />
+                <Avatar className="h-16 w-16">
+                  <AvatarImage
+                    src={user?.photo}
+                    alt="Profile"
+                    className="object-cover"
+                  />
                   <AvatarFallback>JS</AvatarFallback>
                 </Avatar>
               </div>
@@ -72,17 +72,18 @@ function RightSide() {
       <div>
         <Card className="">
           <CardContent>
-            <div className="flex dark:text-gray-400 items-center gap-2">
-              <span className="text-sm">
-                Developed by <b>Jaya Saleh</b> •
+            <div className="flex dark:text-gray-300 items-center gap-2">
+              <span className="text-xs">
+                Developed by <b>Jaya Saleh</b>
               </span>
-              <FaGithub size={20} />
-              <FaLinkedin size={20} />
-              <FaFacebook size={20} />
-              <PiInstagramLogoFill size={20} />
+              •
+              <FaGithub size={15} />
+              <FaLinkedin size={15} />
+              <FaFacebook size={15} />
+              <PiInstagramLogoFill size={15} />
             </div>
             <div>
-              <span className="text-xs dark:text-gray-600">
+              <span className="text-xs dark:text-gray-500">
                 Powered by Dumbways Indonesia • #1 Coding Bootcamp
               </span>
             </div>

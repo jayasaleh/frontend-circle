@@ -6,10 +6,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Edit2Icon, MoreVertical, Trash2 } from 'lucide-react';
-import { Button } from '../ui/button';
+import { Button } from '../../components/ui/button';
 import { useDeleteTweet } from '@/hooks/useDeleteTweet';
-import { AlertDialogDelete } from '../AlertDialog';
-import EditTweetModal from '../EditTweetModal';
+import { AlertDialogDelete } from '../../components/AlertDialog';
+import EditTweetModal from '../../components/EditTweetModal';
 import { FaSpinner } from 'react-icons/fa';
 import { useState } from 'react';
 type deleteTweetProps = {

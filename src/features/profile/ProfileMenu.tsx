@@ -2,7 +2,7 @@ import AllPostProfile from '@/routes/AllPostProfile';
 import MediaProfile from '@/routes/MediaProfile';
 import { useState } from 'react';
 
-const ProfileMenu = () => {
+const ProfileMenu = ({ userId }: { userId: number }) => {
   const [button, setButton] = useState('All Post');
   return (
     <div>
@@ -20,7 +20,11 @@ const ProfileMenu = () => {
         ))}
       </div>
 
-      {button == 'All Post' ? <AllPostProfile /> : <MediaProfile />}
+      {button == 'All Post' ? (
+        <AllPostProfile userId={userId} />
+      ) : (
+        <MediaProfile userId={userId} />
+      )}
     </div>
   );
 };

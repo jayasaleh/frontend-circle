@@ -17,6 +17,7 @@ type AuthState = {
   _hasHydrated: boolean;
   setUser: (user: User) => void;
   setToken: (token: string) => void;
+  login: (data: { user: User; token: string }) => void;
   logout: () => void;
   setHasHydrated: (hydrated: boolean) => void;
 };
@@ -33,6 +34,7 @@ export const useAuthLogin = create<AuthState>()(
       },
       setUser: (user) => set({ user }),
       setToken: (token) => set({ token }),
+      login: (data) => set({ user: data.user, token: data.token }),
       logout: () => {
         set({ user: null, token: null });
       },
