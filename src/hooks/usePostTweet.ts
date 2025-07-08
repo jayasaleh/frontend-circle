@@ -7,13 +7,6 @@ interface PostTweetOption {
   onSuccess: () => void;
   onError: (error: Error) => void;
 }
-
-interface PostTweetRequest {
-  content: string;
-  userId: number;
-  images?: string;
-}
-
 export const usePostTweet = (options?: PostTweetOption) => {
   const token = useAuthLogin((state) => state.token);
   const queryClient = useQueryClient();

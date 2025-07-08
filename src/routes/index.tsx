@@ -6,13 +6,14 @@ import Beranda from './Beranda';
 import Layout from '@/Layouts/Layout';
 import DetailTweet from './DetailTweet';
 import Follows from './Follows';
-import ForgotPassword from '../Layouts/auth/ForgotPassword';
+import ForgotPassword from '../Layouts/auth/ForgotPassword/ForgotPassword';
 import Profile from './Profile';
 import ProfileUser from './ProfileUser';
 import ProtectedRoute from './ProtectedRoute';
 import Search from '../features/search/Search';
 import Status from './Status';
 import AuthLayout from '@/Layouts/AuthLayout';
+import ResetPassword from '@/Layouts/auth/ResetPassword/ResetPassword';
 
 let router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ let router = createBrowserRouter([
       {
         path: '/forgotpassword',
         Component: ForgotPassword,
+      },
+      {
+        path: '/reset-password/:token',
+        Component: ResetPassword,
       },
     ],
   },

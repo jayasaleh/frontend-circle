@@ -38,7 +38,11 @@ function AllPostProfile({ userId }: { userId: number }) {
       {tweetsFeed.map((tweet) => (
         <div className="flex gap-3 border-b-1 p-3" key={tweet.id}>
           <Avatar className="h-10 w-10">
-            <AvatarImage src={tweet.user.photo} alt="Your Profile" />
+            <AvatarImage
+              src={tweet.user.photo}
+              alt="Your Profile"
+              className="object-cover"
+            />
             <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="flex-1">
@@ -95,7 +99,7 @@ function AllPostProfile({ userId }: { userId: number }) {
             </div>
           </div>
           <div>
-            {user.id === tweet.userId ? <MoreOption tweetId={tweet.id} /> : ''}
+            {user.id === tweet.userId ? <MoreOption tweet={tweet} /> : ''}
           </div>
         </div>
       ))}

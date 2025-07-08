@@ -31,8 +31,17 @@ function RightSide() {
           <Card>
             <div className="relative p-2 ">
               {/* Background Image */}
-              <div className="h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg"></div>
-
+              <div className="h-20 w-full rounded-lg overflow-hidden bg-neutral-700">
+                {user.banner ? (
+                  <img
+                    src={user.banner}
+                    alt="User banner"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-r from-green-500 to-blue-500"></div>
+                )}
+              </div>
               {/* Profile Avatar - Positioned to overlap the background */}
               <div className="absolute -bottom-5 left-4">
                 <Avatar className="h-16 w-16">

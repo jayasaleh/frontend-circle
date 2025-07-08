@@ -25,7 +25,7 @@ export const usePostComment = (tweetId: number, option?: PostCommentOption) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['detail-tweet', tweetId] });
-      toast.success('berhasil menambahkan reply');
+     
       option?.onSuccess?.();
     },
     onError: (error: Error) => {

@@ -1,3 +1,4 @@
+import EditTweetModal from '@/components/EditTweetModal';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -5,39 +6,41 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Edit2Icon, MoreVertical, Trash2 } from 'lucide-react';
-import { Button } from '../../components/ui/button';
 import { useDeleteTweet } from '@/hooks/useDeleteTweet';
-import { AlertDialogDelete } from '../../components/AlertDialog';
-import EditTweetModal from '../../components/EditTweetModal';
-import { FaSpinner } from 'react-icons/fa';
+import { Tweet } from '@/types/tweet';
+import { Edit2Icon, MoreVertical, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-type deleteTweetProps = {
-  tweetId: number;
-};
+import { AlertDialogDelete } from '../../components/AlertDialog';
 
-function MoreOption({ tweetId }: deleteTweetProps) {
+type MoreOptionProps = {
+  tweet: Tweet;
+};
+function MoreOption({ tweet }: MoreOptionProps) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const { mutate: deleteTweet, isPending: isDeleting } = useDeleteTweet();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const handleDeleteTweet = () => {
-    deleteTweet(tweetId);
-    // setIsMenuOpen(false);
+    deleteTweet(tweet.id);
   };
 
   return (
-    <div>
+    <>
       <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
         <DropdownMenuTrigger asChild className="cursor-pointer">
           <MoreVertical size={15} />
         </DropdownMenuTrigger>
         <DropdownMenuContent side="left" className="space-x-2">
           <DropdownMenuGroup>
-            <EditTweetModal>
-              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                <Edit2Icon /> <span className="dark:text-white">Edit</span>
-              </DropdownMenuItem>
-            </EditTweetModal>
+            <DropdownMenuItem
+              onSelect={() => {
+                setIsMenuOpen(false);
+                setIsEditModalOpen(true);
+              }}
+              className="cursor-pointer"
+            >
+              <Edit2Icon /> <span className="dark:text-white">Edit</span>
+            </DropdownMenuItem>
 
             <DropdownMenuItem
               onSelect={() => {
@@ -52,12 +55,17 @@ function MoreOption({ tweetId }: deleteTweetProps) {
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
+      <EditTweetModal
+        tweet={tweet}
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+      />
       <AlertDialogDelete
         open={isAlertOpen}
         onOpenChange={setIsAlertOpen}
         onConfirm={handleDeleteTweet}
       />
-    </div>
+    </>
   );
 }
 

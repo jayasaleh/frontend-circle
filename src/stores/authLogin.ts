@@ -1,8 +1,7 @@
-import { hydrate } from '@tanstack/react-query';
-import { boolean } from 'zod';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 type User = {
+  banner?: string | undefined;
   id: number;
   email: string;
   username: string;

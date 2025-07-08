@@ -15,12 +15,25 @@ function Profile() {
         <div className="w-full">
           <div className="relative p-2">
             {/* Background Image */}
-            <div className="h-25 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl"></div>
-
+            <div className="h-30 w-full rounded-lg overflow-hidden bg-neutral-700">
+              {user.banner ? (
+                <img
+                  src={user.banner}
+                  alt="User banner"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-r from-green-500 to-blue-500"></div>
+              )}
+            </div>
             {/* Profile Avatar - Positioned to overlap the background */}
             <div className="absolute -bottom-9 left-4">
               <Avatar className="h-20 w-20 ">
-                <AvatarImage src={user.photo} alt="Profile" />
+                <AvatarImage
+                  src={user.photo}
+                  alt="Profile"
+                  className="object-cover"
+                />
                 <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
               </Avatar>
             </div>

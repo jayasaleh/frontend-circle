@@ -23,7 +23,7 @@ function DetailTweet() {
     tweetId,
     {
       onSuccess: () => {
-        setReplyContent('');
+        toast.success('berhasil menambahkan reply');
       },
     }
   );

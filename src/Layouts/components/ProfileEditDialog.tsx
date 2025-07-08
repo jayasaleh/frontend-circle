@@ -28,6 +28,11 @@ export default function ProfileEditDialog() {
   const [username, setUsername] = useState(user?.username || '');
   const [bio, setBio] = useState(user?.bio || '');
 
+  const [bannerFile, setBannerFile] = useState<File | null>(null);
+  const [previewBanner, setPreviewBanner] = useState<string | null>(
+    user?.banner || null
+  );
+  const bannerInputRef = useRef<HTMLInputElement>(null);
   // State untuk file gambar dan URL preview-nya
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(
@@ -50,31 +55,49 @@ export default function ProfileEditDialog() {
       setPreviewImage(URL.createObjectURL(file)); // Buat URL preview untuk ditampilkan
     }
   };
+  const handleBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setBannerFile(file);
+      setPreviewBanner(URL.createObjectURL(file));
+    }
+  };
 
-  // Handler untuk submit form
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Mencegah halaman refresh
-
+    e.preventDefault();
+    let hasChanges = false;
     const formData = new FormData();
 
-    // Hanya tambahkan field jika nilainya berubah dari data asli
-    if (name !== user?.name) formData.append('name', name);
-    if (username !== user?.username) formData.append('username', username);
-    if (bio !== user?.bio) formData.append('bio', bio);
+    if (name !== user?.name) {
+      formData.append('name', name);
+      hasChanges = true;
+    }
+    if (username !== user?.username) {
+      formData.append('username', username);
+      hasChanges = true;
+    }
+    if (bio !== user?.bio) {
+      formData.append('bio', bio);
+      hasChanges = true;
+    }
     if (photoFile) {
       formData.append('photo', photoFile);
+      hasChanges = true;
+    }
+    if (bannerFile) {
+      formData.append('banner', bannerFile);
+      hasChanges = true;
     }
 
-    // Hanya jalankan mutasi jika ada perubahan
-    if (formData.entries().next().done === false) {
+    // ✅ Langkah 2: Gunakan variabel 'hasChanges' untuk memutuskan aksi
+    if (hasChanges) {
       updateProfile(formData);
     } else {
-      // Jika tidak ada perubahan, tutup saja modalnya
+      // Jika tidak ada perubahan sama sekali, tutup saja modalnya
       setOpen(false);
     }
   };
 
-  // Reset state form setiap kali modal dibuka/ditutup
   useEffect(() => {
     if (user) {
       setName(user.name);
@@ -102,7 +125,20 @@ export default function ProfileEditDialog() {
         <form onSubmit={handleSubmit}>
           {/* Bagian Banner & Avatar */}
           <div className="relative mb-16">
-            <div className="h-32 w-full bg-neutral-700 rounded-lg"></div>
+            <div className="h-32 w-full bg-neutral-700 relative group rounded-lg">
+              {previewBanner && (
+                <img
+                  src={previewBanner}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              )}
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer rounded-lg"
+                onClick={() => bannerInputRef.current?.click()}
+              >
+                <Camera className="h-8 w-8 text-white" />
+              </div>
+            </div>
             <div className="absolute -bottom-12 left-4">
               <div className="relative group">
                 <div className="w-24 h-24 rounded-full border-4 border-black bg-black">
@@ -167,6 +203,14 @@ export default function ProfileEditDialog() {
           ref={fileInputRef}
           accept="image/*"
           onChange={handleImageChange}
+        />
+        <Input
+          id="banner-upload"
+          type="file"
+          className="hidden"
+          ref={bannerInputRef}
+          accept="image/*"
+          onChange={handleBannerChange}
         />
       </DialogContent>
     </Dialog>

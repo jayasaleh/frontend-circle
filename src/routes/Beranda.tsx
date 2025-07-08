@@ -92,7 +92,11 @@ function Beranda() {
               onSubmit={handleSubmit(onSubmit)}
             >
               <Avatar className="h-10 w-10">
-                <AvatarImage src={user.photo} alt="Your Profile" />
+                <AvatarImage
+                  src={user.photo}
+                  alt="Your Profile"
+                  className="object-cover"
+                />
                 <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
               </Avatar>
 
@@ -149,7 +153,11 @@ function Beranda() {
             <div className="flex gap-3 border-b-1 p-3" key={tweet.id}>
               <Link to={`/profile/${tweet.user.id}`}>
                 <Avatar className="h-10 w-10">
-                  <AvatarImage src={tweet.user.photo} alt="Your Profile" />
+                  <AvatarImage
+                    src={tweet.user.photo}
+                    alt="Your Profile"
+                    className="object-cover"
+                  />
                   <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
                 </Avatar>
               </Link>
@@ -209,11 +217,7 @@ function Beranda() {
                 </div>
               </div>
               <div>
-                {user.id === tweet.userId ? (
-                  <MoreOption tweetId={tweet.id} />
-                ) : (
-                  ''
-                )}
+                {user.id === tweet.userId ? <MoreOption tweet={tweet} /> : ''}
               </div>
             </div>
           ))}

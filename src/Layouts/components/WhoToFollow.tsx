@@ -58,7 +58,11 @@ function WhoToFollow() {
               >
                 <div className="flex items-center gap-2">
                   <Avatar className="h-10 w-10">
-                    <AvatarImage src={follow.photo} alt={follow.name} />
+                    <AvatarImage
+                      src={follow.photo}
+                      alt={follow.name}
+                      className="object-cover"
+                    />
                     <AvatarFallback>
                       {follow.name.charAt(0).toUpperCase()}
                     </AvatarFallback>
