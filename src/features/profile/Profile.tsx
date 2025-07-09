@@ -1,10 +1,8 @@
-import ProfileMenu from '@/features/profile/ProfileMenu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import UserFollowCounts from '@/components/UserFollowCounts';
-import { useAuthLogin } from '@/stores/authLogin';
+import ProfileMenu from '@/features/profile/ProfileMenu';
 import ProfileEditDialog from '@/Layouts/components/ProfileEditDialog';
-import { use } from 'react';
+import { useAuthLogin } from '@/stores/authLogin';
 
 function Profile() {
   const { user } = useAuthLogin();

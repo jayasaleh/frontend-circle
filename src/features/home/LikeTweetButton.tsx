@@ -1,11 +1,7 @@
-// file: src/components/buttons/LikeButton.tsx
-
-import React from 'react';
-
-import { Button } from '../../components/ui/button';
-import { Heart, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { useLikeButton } from '@/hooks/useLikeTweetToggle';
+import { cn } from '@/lib/utils';
+import { Heart, Loader2 } from 'lucide-react';
+import { Button } from '../../components/ui/button';
 
 interface LikeButtonProps {
   tweetId: number;

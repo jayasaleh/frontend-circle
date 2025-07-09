@@ -1,6 +1,5 @@
 interface User {
-  banner: string | undefined;
-  banner: any;
+  banner?: string;
   id: number;
   username: string;
   name: string;

@@ -1,8 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useAuthLogin } from '@/stores/authLogin';
 import { Heart, Home, Search, User } from 'lucide-react';
-import React from 'react';
-import { TbLogout, TbLogout2 } from 'react-icons/tb';
+import { TbLogout } from 'react-icons/tb';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 function BottomNavbarMobile() {

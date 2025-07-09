@@ -1,4 +1,3 @@
-import { useAuthLogin } from '@/stores/authLogin';
 import { api } from '@/utils/api';
 export const checkLikeStatus = async (
   tweetId: number

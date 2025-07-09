@@ -1,4 +1,3 @@
-import { TweetCommentDTO } from '@/schema/schemaTweetComment';
 import { useAuthLogin } from '@/stores/authLogin';
 import { TweetDetailWithComments } from '@/types/tweetDetailWithComments';
 import { api } from '@/utils/api';

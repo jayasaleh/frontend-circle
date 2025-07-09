@@ -6,7 +6,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from './ui/dialog';
 import { Textarea } from './ui/textarea';
 import { ImageUp, Loader2, X } from 'lucide-react';
@@ -27,7 +26,7 @@ function EditTweetModal({ tweet, onOpenChange, open }: EditTweetModalProps) {
   const [previewImage, setPreviewImage] = useState<string | null>(
     tweet?.images || ''
   );
-  
+
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const { mutate: updateTweet, isPending } = usePatchTweet({
@@ -104,7 +103,7 @@ function EditTweetModal({ tweet, onOpenChange, open }: EditTweetModalProps) {
                 </Button>
               </DialogFooter>
             </div>
-          </form> 
+          </form>
           <Input
             id="photo-upload"
             type="file"

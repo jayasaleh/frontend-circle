@@ -2,7 +2,7 @@
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
 import { ThemeProvider } from '@/components/ThemeProviders';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import './assets/style/App.css';
 import AuthContextProvider from './components/auth/AuthContext';

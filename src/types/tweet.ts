@@ -5,7 +5,7 @@ export type Tweet = {
   content: string;
   userId: number;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
   images: string | null;
   user: User;
   _count: {

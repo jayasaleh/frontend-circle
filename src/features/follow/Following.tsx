@@ -7,7 +7,7 @@ import {
 } from '../../components/ui/avatar';
 import FollowToggleButton from './components/FollowToggleButton';
 function Following() {
-  const { data: following, isLoading, isError } = useGetFollowing();
+  const { data: following, isLoading } = useGetFollowing();
   if (isLoading) {
     return (
       <div className="h-30 flex justify-center items-center">

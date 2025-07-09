@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import UserFollowCounts from '@/components/UserFollowCounts';
 import FollowToggleButton from '@/features/follow/components/FollowToggleButton';
 import ProfileMenu from '@/features/profile/ProfileMenu';
@@ -16,7 +15,7 @@ function ProfileUser() {
   }
   const userId = params.id ? parseInt(params.id, 10) : 0;
 
-  const { data: users, isLoading} = useGetUserProfile(userId);
+  const { data: users, isLoading } = useGetUserProfile(userId);
   if (isLoading) {
     return;
   }

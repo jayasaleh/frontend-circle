@@ -4,7 +4,7 @@ import { ButtonTheme } from '@/components/ui/buttonTheme';
 import { useAuthLogin } from '@/stores/authLogin';
 import { Heart, Home, Search, User } from 'lucide-react';
 import { TbLogout2 } from 'react-icons/tb';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function Navigation() {
   const location = useLocation();
@@ -63,7 +63,7 @@ function Navigation() {
         <ButtonTheme />
         <Button className="" onClick={handleLogout} variant="outline">
           <TbLogout2 size={20} className="dark:text-white" />
-          <span className="dark:text-white"> Log Out</span> 
+          <span className="dark:text-white"> Log Out</span>
         </Button>
       </div>
     </div>

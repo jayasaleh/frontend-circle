@@ -20,6 +20,7 @@ export const useLogin = () => {
       navigate('/');
     },
     onError: (error: Error) => {
+      console.error(error.message);
       toast.error('email / password salah');
     },
   });

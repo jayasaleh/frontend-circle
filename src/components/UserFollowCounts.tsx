@@ -1,5 +1,4 @@
 import { useGetFollowCounts } from '@/hooks/useFollowCounts';
-import React from 'react';
 import { Skeleton } from './ui/skeleton';
 interface UserProfileStatsProps {
   userId: number;

@@ -1,5 +1,4 @@
 import { useAuthLogin } from '@/stores/authLogin';
-import { Followers } from '@/types/followers';
 import { api } from '@/utils/api';
 import { useQuery } from '@tanstack/react-query';
 

@@ -1,5 +1,5 @@
-import AllPostProfile from '@/routes/AllPostProfile';
-import MediaProfile from '@/routes/MediaProfile';
+import AllPostProfile from '@/features/profile/AllPostProfile';
+import MediaProfile from '@/features/profile/MediaProfile';
 import { useState } from 'react';
 
 const ProfileMenu = ({ userId }: { userId: number }) => {

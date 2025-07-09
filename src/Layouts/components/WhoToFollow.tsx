@@ -1,7 +1,6 @@
-import FollowToggleButton from '@/features/follow/components/FollowToggleButton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import FollowToggleButton from '@/features/follow/components/FollowToggleButton';
 import { useSuggestUsers } from '@/hooks/useSuggestedUsers';
 import { PiSpinner } from 'react-icons/pi';
 

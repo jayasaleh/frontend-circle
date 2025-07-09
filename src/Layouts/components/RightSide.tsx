@@ -1,14 +1,13 @@
 import ProfileEditDialog from '@/Layouts/components/ProfileEditDialog';
+import UserFollowCounts from '@/components/UserFollowCounts';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { useAuthLogin } from '@/stores/authLogin';
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { PiInstagramLogoFill } from 'react-icons/pi';
 import { useLocation } from 'react-router-dom';
 import WhoToFollow from './WhoToFollow';
-import UserFollowCounts from '@/components/UserFollowCounts';
 
 function RightSide() {
   const location = useLocation();

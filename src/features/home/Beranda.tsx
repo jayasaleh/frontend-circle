@@ -1,25 +1,20 @@
 import { TweetCardSkeleton } from '@/components/SkeletonUiTweet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { HomePageSkeleton } from '@/features/home/components/HomeSkeletonCard';
-import LikeButton from '@/features/home/LikeTweetButton';
-import MoreOption from '@/features/home/MoreOption';
 import { useGetTweets } from '@/hooks/useGetTweets';
 import { usePostTweet } from '@/hooks/usePostTweet';
 import TweetCard from '@/Layouts/components/TweetCard';
-import { FormatDate } from '@/lib/DateTime';
 import { useAuthLogin } from '@/stores/authLogin';
 import { TweetForm } from '@/types/tweetForm';
-import { Image, Loader2, MessageSquare } from 'lucide-react';
+import { Image, Loader2 } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 
 function Beranda() {
   const { register, handleSubmit, setValue, reset } = useForm<TweetForm>();

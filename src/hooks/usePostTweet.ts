@@ -1,7 +1,6 @@
 import { useAuthLogin } from '@/stores/authLogin';
 import { api } from '@/utils/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { error } from 'console';
 
 interface PostTweetOption {
   onSuccess: () => void;

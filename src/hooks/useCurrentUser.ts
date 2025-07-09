@@ -10,7 +10,7 @@ type User = {
 };
 
 export const useCurrentUser = () => {
-  const { token, setUser, logout } = useAuthLogin();
+  const { token } = useAuthLogin();
 
   return useQuery<User>({
     queryKey: ['current-user'],

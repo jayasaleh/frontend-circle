@@ -10,7 +10,7 @@ import { useAuthLogin } from '@/stores/authLogin';
 import { Heart, Loader2, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 function DetailTweet() {
   const [replyContent, setReplyContent] = useState('');
   const { user } = useAuthLogin();

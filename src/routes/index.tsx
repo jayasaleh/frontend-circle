@@ -1,17 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import AuthLogin from '../Layouts/auth/Login/AuthLogin';
 import AuthRegister from '../Layouts/auth/Register/AuthRegister';
-import Beranda from './Beranda';
+import Beranda from '../features/home/Beranda';
 
 import Layout from '@/Layouts/Layout';
-import DetailTweet from './DetailTweet';
-import Follows from './Follows';
+import DetailTweet from '../features/home/DetailTweet';
+import Follows from '../features/follow/Follows';
 import ForgotPassword from '../Layouts/auth/ForgotPassword/ForgotPassword';
-import Profile from './Profile';
-import ProfileUser from './ProfileUser';
+import Profile from '../features/profile/Profile';
+import ProfileUser from '../features/profile/ProfileUser';
 import ProtectedRoute from './ProtectedRoute';
 import Search from '../features/search/Search';
-import Status from './Status';
 import AuthLayout from '@/Layouts/AuthLayout';
 import ResetPassword from '@/Layouts/auth/ResetPassword/ResetPassword';
 
@@ -43,10 +42,7 @@ let router = createBrowserRouter([
             path: '/follows',
             Component: Follows,
           },
-          {
-            path: '/status',
-            Component: Status,
-          },
+
           {
             path: '/profile/:id',
             Component: ProfileUser,

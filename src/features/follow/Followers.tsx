@@ -1,6 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useGetFollowers } from '@/hooks/useGetFollowers';
-import { PiSpinner } from 'react-icons/pi';
 import {
   Avatar,
   AvatarFallback,

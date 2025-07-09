@@ -18,7 +18,7 @@ export default function CreatePostModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [postContent, setPostContent] = useState('');
   const imageInputRef = useRef<HTMLInputElement>(null);
-  const { register, handleSubmit, setValue, reset } = useForm<TweetForm>();
+  const { handleSubmit, setValue, reset } = useForm<TweetForm>();
   const { user } = useAuthLogin();
   const [previewImageModal, setPreviewImageModal] = useState<string | null>(
     null

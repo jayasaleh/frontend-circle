@@ -1,7 +1,6 @@
-import MediaProfile from '@/routes/MediaProfile';
 import { useState } from 'react';
-import Following from './Following';
 import Followers from './Followers';
+import Following from './Following';
 
 function FollowMenu() {
   const [button, setButton] = useState('Following');

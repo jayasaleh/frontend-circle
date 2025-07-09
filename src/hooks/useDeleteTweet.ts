@@ -1,7 +1,6 @@
 import { useAuthLogin } from '@/stores/authLogin';
 import { api } from '@/utils/api';
-import { Mutation, useMutation, useQueryClient } from '@tanstack/react-query';
-import { error } from 'console';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
 export const useDeleteTweet = () => {
