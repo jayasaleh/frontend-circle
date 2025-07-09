@@ -63,7 +63,7 @@ function Navigation() {
         <ButtonTheme />
         <Button className="" onClick={handleLogout} variant="outline">
           <TbLogout2 size={20} className="dark:text-white" />
-          <span className="dark:text-white"> Log Out</span>
+          <span className="dark:text-white"> Log Out</span> 
         </Button>
       </div>
     </div>

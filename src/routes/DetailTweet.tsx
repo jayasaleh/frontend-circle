@@ -28,10 +28,10 @@ function DetailTweet() {
     }
   );
   const { data: tweetDetails, isLoading, isError } = useGetDetailTweet(tweetId);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return;
   if (isError) return <div>Gagal memuat tweet.</div>;
   if (!tweetDetails) {
-    return <p>tes</p>;
+    return;
   }
   const handlePostReply = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -55,15 +55,15 @@ function DetailTweet() {
                 {tweetDetails.user.name}
               </span>
               <span className="text-gray-500">•</span>
+              <span className="text-gray-500 text-sm ">
+                @{tweetDetails.user.username}
+              </span>
               <span className="text-gray-500 text-sm">
                 {FormatDate(tweetDetails.createdAt)}
               </span>
             </div>
-            <span className="text-gray-500 text-sm ">
-              @{tweetDetails.user.username}
-            </span>
           </div>
-          <div className="grid grid-cols-1 gap-2">
+          <div className="">
             <p className="text-justify text-sm dark:text-gray-300 text-gray-600">
               {tweetDetails.content}
             </p>
@@ -71,10 +71,10 @@ function DetailTweet() {
           {tweetDetails.images && (
             <Dialog>
               <DialogTrigger>
-                <div className="w-1/2">
+                <div>
                   <img
                     src={tweetDetails.images}
-                    className="rounded-md w-full"
+                    className="rounded-md w-3/4"
                     alt="Tweet image"
                   />
                 </div>
@@ -89,18 +89,15 @@ function DetailTweet() {
             </Dialog>
           )}
 
-          <div className="flex items-center gap-6 mt-2 text-gray-400">
-            <LikeButton tweetId={tweetDetails.id} />
-            {tweetDetails._count.likes} Like
-            <Link
-              to={'/detail'}
-              className="flex items-center gap-1 hover:text-[#10b981]"
-            >
+          <div className="flex items-center gap-2 mt-2 text-gray-400">
+            <div className="flex items-center">
+              <LikeButton tweetId={tweetDetails.id} />
+              {tweetDetails._count.likes}
+            </div>
+            <div className="flex gap-2 items-center">
               <MessageSquare size={20} />
-              <span className="text-sm">
-                {tweetDetails._count.comments} Replies
-              </span>
-            </Link>
+              {tweetDetails._count.comments} Replies
+            </div>
           </div>
         </div>
       </div>

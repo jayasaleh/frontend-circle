@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import AuthLogin from '../Layouts/auth/AuthLogin';
-import AuthRegister from '../Layouts/auth/AuthRegister';
+import AuthLogin from '../Layouts/auth/Login/AuthLogin';
+import AuthRegister from '../Layouts/auth/Register/AuthRegister';
 import Beranda from './Beranda';
 
 import Layout from '@/Layouts/Layout';

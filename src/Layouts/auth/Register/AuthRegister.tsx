@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { usePostRegister } from '@/hooks/usePostRegister';
+import { usePostRegister } from '@/Layouts/auth/Register/hooks/usePostRegister';
 import { RegisterDTO, schemaRegister } from '@/schema/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,7 @@ function AuthRegister() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-md">
+      <div className="w-3/4 sm:w-md">
         <h1 className="text-3xl font-bold text-green-600">Circle</h1>
         <h1 className="text-2xl font-bold mb-4">Create Account Circle</h1>
 

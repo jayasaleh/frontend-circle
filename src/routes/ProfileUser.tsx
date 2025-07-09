@@ -16,7 +16,7 @@ function ProfileUser() {
   }
   const userId = params.id ? parseInt(params.id, 10) : 0;
 
-  const { data: users, isLoading, isError } = useGetUserProfile(userId);
+  const { data: users, isLoading} = useGetUserProfile(userId);
   if (isLoading) {
     return;
   }
@@ -33,7 +33,7 @@ function ProfileUser() {
         <div className="w-full">
           <div className="relative p-2">
             {/* Background Image */}
-            <div className="h-30 w-full rounded-lg overflow-hidden bg-neutral-700">
+            <div className="h-40 w-full rounded-lg overflow-hidden bg-neutral-700">
               {users.banner ? (
                 <img
                   src={users.banner}

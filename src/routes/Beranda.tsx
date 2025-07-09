@@ -1,24 +1,25 @@
-import { FormatDate } from '@/lib/DateTime';
-import MoreOption from '@/features/home/MoreOption';
+import { TweetCardSkeleton } from '@/components/SkeletonUiTweet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Textarea } from '@/components/ui/textarea';
+import { HomePageSkeleton } from '@/features/home/components/HomeSkeletonCard';
+import LikeButton from '@/features/home/LikeTweetButton';
+import MoreOption from '@/features/home/MoreOption';
 import { useGetTweets } from '@/hooks/useGetTweets';
 import { usePostTweet } from '@/hooks/usePostTweet';
+import TweetCard from '@/Layouts/components/TweetCard';
+import { FormatDate } from '@/lib/DateTime';
 import { useAuthLogin } from '@/stores/authLogin';
 import { TweetForm } from '@/types/tweetForm';
-import { Heart, Image, Loader2, MessageSquare } from 'lucide-react';
+import { Image, Loader2, MessageSquare } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import LikeButton from '@/features/home/LikeTweetButton';
-import { Helmet } from 'react-helmet-async';
-import { HomePageSkeleton } from '@/features/home/components/HomeSkeletonCard';
 
 function Beranda() {
   const { register, handleSubmit, setValue, reset } = useForm<TweetForm>();
@@ -41,7 +42,7 @@ function Beranda() {
     },
   });
 
-  const { data: tweetsFeed, isLoading, isError } = useGetTweets();
+  const { data: tweetsFeed, isLoading } = useGetTweets();
 
   if (!user) {
     return <p>Loading user...</p>;
@@ -52,7 +53,7 @@ function Beranda() {
   }
 
   if (!tweetsFeed) {
-    return <p>Loading tweets...</p>;
+    return <TweetCardSkeleton />;
   }
 
   const onSubmit = (data: TweetForm) => {
@@ -148,78 +149,9 @@ function Beranda() {
           </div>
         </div>
 
-        <div className="flex-col gap-5">
+        <div className="flex-col">
           {tweetsFeed.map((tweet) => (
-            <div className="flex gap-3 border-b-1 p-3" key={tweet.id}>
-              <Link to={`/profile/${tweet.user.id}`}>
-                <Avatar className="h-10 w-10">
-                  <AvatarImage
-                    src={tweet.user.photo}
-                    alt="Your Profile"
-                    className="object-cover"
-                  />
-                  <AvatarFallback>{tweet.user.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-              </Link>
-              <div className="flex-1">
-                <div className="flex gap-1 items-center gap-y-2">
-                  <Link to={`/profile/${tweet.user.id}`}>
-                    <span className="font-bold dark:text-white text-sm ">
-                      {tweet.user.name}
-                    </span>
-                    <span className="text-gray-500 text-sm ">
-                      @{tweet.user.username}
-                    </span>
-                  </Link>
-                  <span className="text-gray-500">•</span>
-                  <span className="text-gray-500 text-sm">
-                    {FormatDate(tweet.createdAt)}
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 gap-2">
-                  <p className="text-justify text-sm dark:text-gray-300 text-gray-600">
-                    {tweet.content}
-                  </p>
-                  {tweet.images && (
-                    <Dialog>
-                      <DialogTrigger>
-                        <div className="w-1/2">
-                          <img
-                            src={tweet.images}
-                            className="rounded-md w-full"
-                            alt="Tweet image"
-                          />
-                        </div>
-                      </DialogTrigger>
-                      <DialogContent>
-                        <img
-                          src={tweet.images}
-                          className="rounded-md w-full"
-                          alt="Tweet image"
-                        />
-                      </DialogContent>
-                    </Dialog>
-                  )}
-                </div>
-
-                <div className="flex items-center gap-6 mt-2 text-gray-400">
-                  <div className="flex items-center gap-1.5">
-                    <LikeButton tweetId={tweet.id} />
-                    <span className="text-sm">{tweet.likes.length}</span>
-                  </div>
-                  <Link
-                    to={`/detail/${tweet.id}`}
-                    className="flex items-center gap-1 hover:text-[#10b981]"
-                  >
-                    <MessageSquare size={20} />
-                    <span>{tweet.comments.length} Replies</span>
-                  </Link>
-                </div>
-              </div>
-              <div>
-                {user.id === tweet.userId ? <MoreOption tweet={tweet} /> : ''}
-              </div>
-            </div>
+            <TweetCard tweet={tweet} key={tweet.id} />
           ))}
         </div>
       </div>

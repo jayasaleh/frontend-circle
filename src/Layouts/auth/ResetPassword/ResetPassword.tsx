@@ -35,7 +35,7 @@ function ResetPassword() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-md">
+      <div className="w-3/4 sm:w-md">
         <h1 className="text-3xl font-bold  text-green-600">Circle</h1>
         <h1 className="text-md font-bold mb-4">Reset Password</h1>
         <form

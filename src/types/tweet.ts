@@ -1,5 +1,3 @@
-import { Comment } from './comment';
-import { LikeTweet } from './likeTweet';
 import { User } from './user';
 
 export type Tweet = {
@@ -10,6 +8,8 @@ export type Tweet = {
   updatedAt: string;
   images: string | null;
   user: User;
-  likes: LikeTweet[];
-  comments: Comment[];
+  _count: {
+    likes: number;
+    comments: number;
+  };
 };

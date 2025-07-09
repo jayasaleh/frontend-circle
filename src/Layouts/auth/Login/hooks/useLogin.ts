@@ -19,7 +19,7 @@ export const useLogin = () => {
       toast.success(`Success Login, Welcome  ${data.user.name}`);
       navigate('/');
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error('email / password salah');
     },
   });

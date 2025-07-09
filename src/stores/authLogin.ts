@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 type User = {
-  banner?: string | undefined;
+  banner?: string;
   id: number;
   email: string;
   username: string;

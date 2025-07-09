@@ -3,6 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import UserFollowCounts from '@/components/UserFollowCounts';
 import { useAuthLogin } from '@/stores/authLogin';
+import ProfileEditDialog from '@/Layouts/components/ProfileEditDialog';
+import { use } from 'react';
 
 function Profile() {
   const { user } = useAuthLogin();
@@ -15,7 +17,7 @@ function Profile() {
         <div className="w-full">
           <div className="relative p-2">
             {/* Background Image */}
-            <div className="h-30 w-full rounded-lg overflow-hidden bg-neutral-700">
+            <div className="h-40 w-full rounded-lg overflow-hidden bg-neutral-700">
               {user.banner ? (
                 <img
                   src={user.banner}
@@ -41,13 +43,7 @@ function Profile() {
 
           <div className="pt-1 mt-2">
             <div className="flex justify-end">
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-full text-xs"
-              >
-                Edit Profile
-              </Button>
+              <ProfileEditDialog />
             </div>
             <div className="flex flex-col p-2">
               <h3 className="text-lg font-bold">{user?.name}</h3>

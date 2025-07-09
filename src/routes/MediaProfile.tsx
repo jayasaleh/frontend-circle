@@ -26,7 +26,7 @@ function MediaProfile({ userId }: { userId: number }) {
           {tweetsFeed.map(
             (tweet) =>
               tweet.images && (
-                <Link to={`/detail/${tweet.id}`}>
+                <Link to={`/detail/${tweet.id}`} key={tweet.id}>
                   <img
                     src={tweet.images}
                     alt=""
