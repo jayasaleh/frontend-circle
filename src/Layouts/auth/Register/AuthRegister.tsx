@@ -18,86 +18,90 @@ function AuthRegister() {
   const { mutate, isPending } = usePostRegister();
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-3/4 sm:w-md">
-        <h1 className="text-3xl font-bold text-green-600">Circle</h1>
-        <h1 className="text-2xl font-bold mb-4">Create Account Circle</h1>
+    <>
+      <title>Circle</title>
+      <meta name="description" content="Register" />
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-3/4 sm:w-md">
+          <h1 className="text-3xl font-bold text-green-600">Circle</h1>
+          <h1 className="text-2xl font-bold mb-4">Create Account Circle</h1>
 
-        <form
-          className="space-y-4 w-full"
-          onSubmit={handleSubmit((data) => mutate(data))}
-        >
-          <Input id="name" placeholder="Name" {...register('name')} />
-          {errors.name ? (
-            <p className="text-red-400"> {errors.name.message}</p>
-          ) : (
-            <p></p>
-          )}
-          <Input
-            id="username"
-            placeholder="Username"
-            {...register('username')}
-          />
-          {errors.username ? (
-            <p className="text-red-400"> {errors.username.message}</p>
-          ) : (
-            <p></p>
-          )}
-          <Input
-            id="email"
-            type="email"
-            placeholder="Email"
-            {...register('email')}
-          />
-          {errors.email ? (
-            <p className="text-red-400"> {errors.email.message}</p>
-          ) : (
-            <p></p>
-          )}
-          <Input
-            id="password"
-            type="password"
-            placeholder="Password"
-            {...register('password')}
-          />
-          {errors.password ? (
-            <p className="text-red-400"> {errors.password.message}</p>
-          ) : (
-            <p></p>
-          )}
-
-          <Input
-            id="confirmPassword"
-            type="password"
-            placeholder="Confirm Password"
-            {...register('confirmPassword')}
-          />
-          {errors.confirmPassword ? (
-            <p className="text-red-400"> {errors.confirmPassword.message}</p>
-          ) : (
-            <p></p>
-          )}
-
-          <Button
-            type="submit"
-            className="w-full rounded-full bg-green-600 font-bold text-lg"
-            disabled={isPending}
+          <form
+            className="space-y-4 w-full"
+            onSubmit={handleSubmit((data) => mutate(data))}
           >
-            {isPending ? 'Loading...' : 'Create'}
-          </Button>
-        </form>
+            <Input id="name" placeholder="Name" {...register('name')} />
+            {errors.name ? (
+              <p className="text-red-400"> {errors.name.message}</p>
+            ) : (
+              <p></p>
+            )}
+            <Input
+              id="username"
+              placeholder="Username"
+              {...register('username')}
+            />
+            {errors.username ? (
+              <p className="text-red-400"> {errors.username.message}</p>
+            ) : (
+              <p></p>
+            )}
+            <Input
+              id="email"
+              type="email"
+              placeholder="Email"
+              {...register('email')}
+            />
+            {errors.email ? (
+              <p className="text-red-400"> {errors.email.message}</p>
+            ) : (
+              <p></p>
+            )}
+            <Input
+              id="password"
+              type="password"
+              placeholder="Password"
+              {...register('password')}
+            />
+            {errors.password ? (
+              <p className="text-red-400"> {errors.password.message}</p>
+            ) : (
+              <p></p>
+            )}
 
-        <div className="text-sm mt-3">
-          Already have account? {''}
-          <NavLink
-            to="/login"
-            className=" hover:underline font-bold text-green-600"
-          >
-            Login
-          </NavLink>
+            <Input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              {...register('confirmPassword')}
+            />
+            {errors.confirmPassword ? (
+              <p className="text-red-400"> {errors.confirmPassword.message}</p>
+            ) : (
+              <p></p>
+            )}
+
+            <Button
+              type="submit"
+              className="w-full rounded-full bg-green-600 font-bold text-lg"
+              disabled={isPending}
+            >
+              {isPending ? 'Loading...' : 'Create'}
+            </Button>
+          </form>
+
+          <div className="text-sm mt-3">
+            Already have account? {''}
+            <NavLink
+              to="/login"
+              className=" hover:underline font-bold text-green-600"
+            >
+              Login
+            </NavLink>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

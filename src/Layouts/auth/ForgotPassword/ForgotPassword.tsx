@@ -20,41 +20,45 @@ function ForgotPassword() {
   });
   const { mutate, isPending } = useForgotPassword();
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-3/4 sm:w-md">
-        <h1 className="text-3xl font-bold  text-green-600">Circle</h1>
-        <h1 className="text-md font-bold mb-4">Forgot Password</h1>
-        <form
-          className="space-y-4 w-full max-w-md"
-          onSubmit={handleSubmit((data) => mutate(data))}
-        >
-          <Input
-            id="email"
-            type="email"
-            placeholder="Email"
-            {...register('email')}
-          />
-          {errors.email ? (
-            <p className="text-red-400"> {errors.email.message}</p>
-          ) : (
-            <p></p>
-          )}
-          <Button
-            type="submit"
-            className="w-full rounded-full bg-green-600 text-md font-bold text-white"
-            disabled={isPending}
+    <>
+      <title>Circle</title>
+      <meta name="description" content="Forgot Password" />
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-3/4 sm:w-md">
+          <h1 className="text-3xl font-bold  text-green-600">Circle</h1>
+          <h1 className="text-md font-bold mb-4">Forgot Password</h1>
+          <form
+            className="space-y-4 w-full max-w-md"
+            onSubmit={handleSubmit((data) => mutate(data))}
           >
-            {isPending ? 'Loading...' : 'Send'}
-          </Button>
-        </form>
-        <div className="mt-4">
-          Already have account?{' '}
-          <Link to="/login" className="text-green-600">
-            Login
-          </Link>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Email"
+              {...register('email')}
+            />
+            {errors.email ? (
+              <p className="text-red-400"> {errors.email.message}</p>
+            ) : (
+              <p></p>
+            )}
+            <Button
+              type="submit"
+              className="w-full rounded-full bg-green-600 text-md font-bold text-white"
+              disabled={isPending}
+            >
+              {isPending ? 'Loading...' : 'Send'}
+            </Button>
+          </form>
+          <div className="mt-4">
+            Already have account?{' '}
+            <Link to="/login" className="text-green-600">
+              Login
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
