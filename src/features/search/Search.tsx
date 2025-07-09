@@ -1,7 +1,6 @@
 import { Input } from '@/components/ui/input';
 import { SearchIcon } from 'lucide-react';
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useDebounce } from './hooks/useDebounce';
 import { useSearchUsers } from './hooks/useSearchUsers';
 import UserCard from './components/UserCard';
@@ -14,13 +13,8 @@ const Search = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Circle</title>
-        <meta
-          name="description"
-          content="Lihat apa yang terjadi di Circle saat ini. Feed utama dari teman dan komunitas Anda."
-        />
-      </Helmet>
+      <title>Circle</title>
+      <meta name="description" content="Search" />
       <div className="w-full border-x h-full p-2">
         <div className="relative mb-5">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />

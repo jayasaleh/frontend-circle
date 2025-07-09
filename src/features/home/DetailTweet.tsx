@@ -42,141 +42,150 @@ function DetailTweet() {
     commentTweet({ content: replyContent, tweetId: tweetId });
   };
   return (
-    <div className="flex flex-col gap-2 ">
-      <div className="flex gap-4 border-b-1 p-3">
-        <Avatar className="h-10 w-10">
-          <AvatarImage src={tweetDetails.user.photo} alt="Your Profile" />
-          <AvatarFallback>{tweetDetails.user.name.charAt(0)}</AvatarFallback>
-        </Avatar>
-        <div className="flex-1">
-          <div className="flex flex-col mb-2">
-            <div className="flex items-center gap-1">
-              <span className="font-bold dark:text-white text-sm ">
-                {tweetDetails.user.name}
-              </span>
-              <span className="text-gray-500">•</span>
-              <span className="text-gray-500 text-sm ">
-                @{tweetDetails.user.username}
-              </span>
-              <span className="text-gray-500 text-sm">
-                {FormatDate(tweetDetails.createdAt)}
-              </span>
-            </div>
-          </div>
-          <div className="">
-            <p className="text-justify text-sm dark:text-gray-300 text-gray-600">
-              {tweetDetails.content}
-            </p>
-          </div>
-          {tweetDetails.images && (
-            <Dialog>
-              <DialogTrigger>
-                <div>
-                  <img
-                    src={tweetDetails.images}
-                    className="rounded-md w-3/4"
-                    alt="Tweet image"
-                  />
-                </div>
-              </DialogTrigger>
-              <DialogContent>
-                <img
-                  src={tweetDetails.images}
-                  className="rounded-md w-full"
-                  alt="Tweet image"
-                />
-              </DialogContent>
-            </Dialog>
-          )}
-
-          <div className="flex items-center gap-2 mt-2 text-gray-400">
-            <div className="flex items-center">
-              <LikeButton tweetId={tweetDetails.id} />
-              {tweetDetails._count.likes}
-            </div>
-            <div className="flex gap-2 items-center">
-              <MessageSquare size={20} />
-              {tweetDetails._count.comments} Replies
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col ">
-        <div className="border-b-1 p-4 sticky top-0">
-          <form className="flex items-center gap-4" onSubmit={handlePostReply}>
-            <Avatar className="h-10 w-10">
-              <AvatarImage src={user.photo} alt="Your Profile" />
-              <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <div className="flex-1">
-              <div
-                contentEditable
-                className={cn(
-                  'w-full min-h-[40px] md:max-w-[450px] outline-none bg-transparent text-white placeholder:text-gray-500',
-                  !replyContent &&
-                    "before:content-['Reply..'] before:text-gray-500"
-                )}
-                onInput={(e) =>
-                  setReplyContent(e.currentTarget.textContent || '')
-                }
-                id="content"
-              />
-            </div>
-            <Button
-              className="rounded-full hover:bg-green-700 dark:text-white"
-              type="submit"
-              disabled={isReplying}
-            >
-              {isReplying && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Reply
-            </Button>
-          </form>
-        </div>
-        <div className="flex flex-col mt-2">
-          {tweetDetails.comments.map((comment) => (
-            <div className="flex gap-4 border-b-1 p-3">
-              <Avatar className="h-10 w-10">
-                <AvatarImage src={comment.user.photo} alt="Your Profile" />
-                <AvatarFallback>{comment.user.name.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div className="flex-1 ">
-                <div className="flex items-center gap-y-3 mb-2">
-                  <div className="flex flex-col ">
-                    <div className="flex items-center gap-1">
-                      <span className="font-bold dark:text-white text-sm ">
-                        {comment.user.name}
-                      </span>
-                      <span className="text-gray-500">•</span>
-                      <span className="text-gray-500 text-sm">
-                        {FormatDate(comment.createdAt)}
-                      </span>
-                    </div>
-                    <span className="text-gray-500 text-sm ">
-                      @{comment.user.username}
-                    </span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-2">
-                  <p className="text-justify text-sm dark:text-gray-300 text-gray-600">
-                    {comment.content}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-6 mt-2 text-gray-400">
-                  <button className="flex items-center gap-1 ">
-                    <Heart
-                      size={20}
-                      className="hover:text-[#10b981] cursor-pointer"
-                    />
-                    <span className="text-sm"> 0</span>
-                  </button>
-                </div>
+    <>
+      <title>Circle</title>
+      <meta name="description" content="Detail Tweet" />
+      <div className="flex flex-col gap-2 ">
+        <div className="flex gap-4 border-b-1 p-3">
+          <Avatar className="h-10 w-10">
+            <AvatarImage src={tweetDetails.user.photo} alt="Your Profile" />
+            <AvatarFallback>{tweetDetails.user.name.charAt(0)}</AvatarFallback>
+          </Avatar>
+          <div className="flex-1">
+            <div className="flex flex-col mb-2">
+              <div className="flex items-center gap-1">
+                <span className="font-bold dark:text-white text-sm ">
+                  {tweetDetails.user.name}
+                </span>
+                <span className="text-gray-500">•</span>
+                <span className="text-gray-500 text-sm ">
+                  @{tweetDetails.user.username}
+                </span>
+                <span className="text-gray-500 text-sm">
+                  {FormatDate(tweetDetails.createdAt)}
+                </span>
               </div>
             </div>
-          ))}
+            <div className="">
+              <p className="text-justify text-sm dark:text-gray-300 text-gray-600">
+                {tweetDetails.content}
+              </p>
+            </div>
+            {tweetDetails.images && (
+              <Dialog>
+                <DialogTrigger>
+                  <div>
+                    <img
+                      src={tweetDetails.images}
+                      className="rounded-md w-3/4"
+                      alt="Tweet image"
+                    />
+                  </div>
+                </DialogTrigger>
+                <DialogContent>
+                  <img
+                    src={tweetDetails.images}
+                    className="rounded-md w-full"
+                    alt="Tweet image"
+                  />
+                </DialogContent>
+              </Dialog>
+            )}
+
+            <div className="flex items-center gap-2 mt-2 text-gray-400">
+              <div className="flex items-center">
+                <LikeButton tweetId={tweetDetails.id} />
+                {tweetDetails._count.likes}
+              </div>
+              <div className="flex gap-2 items-center">
+                <MessageSquare size={20} />
+                {tweetDetails._count.comments} Replies
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col ">
+          <div className="border-b-1 p-4 sticky top-0">
+            <form
+              className="flex items-center gap-4"
+              onSubmit={handlePostReply}
+            >
+              <Avatar className="h-10 w-10">
+                <AvatarImage src={user.photo} alt="Your Profile" />
+                <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div
+                  contentEditable
+                  className={cn(
+                    'w-full min-h-[40px] md:max-w-[450px] outline-none bg-transparent text-white placeholder:text-gray-500',
+                    !replyContent &&
+                      "before:content-['Reply..'] before:text-gray-500"
+                  )}
+                  onInput={(e) =>
+                    setReplyContent(e.currentTarget.textContent || '')
+                  }
+                  id="content"
+                />
+              </div>
+              <Button
+                className="rounded-full hover:bg-green-700 dark:text-white"
+                type="submit"
+                disabled={isReplying}
+              >
+                {isReplying && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Reply
+              </Button>
+            </form>
+          </div>
+          <div className="flex flex-col mt-2">
+            {tweetDetails.comments.map((comment) => (
+              <div className="flex gap-4 border-b-1 p-3">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src={comment.user.photo} alt="Your Profile" />
+                  <AvatarFallback>{comment.user.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <div className="flex-1 ">
+                  <div className="flex items-center gap-y-3 mb-2">
+                    <div className="flex flex-col ">
+                      <div className="flex items-center gap-1">
+                        <span className="font-bold dark:text-white text-sm ">
+                          {comment.user.name}
+                        </span>
+                        <span className="text-gray-500">•</span>
+                        <span className="text-gray-500 text-sm">
+                          {FormatDate(comment.createdAt)}
+                        </span>
+                      </div>
+                      <span className="text-gray-500 text-sm ">
+                        @{comment.user.username}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2">
+                    <p className="text-justify text-sm dark:text-gray-300 text-gray-600">
+                      {comment.content}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-6 mt-2 text-gray-400">
+                    <button className="flex items-center gap-1 ">
+                      <Heart
+                        size={20}
+                        className="hover:text-[#10b981] cursor-pointer"
+                      />
+                      <span className="text-sm"> 0</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

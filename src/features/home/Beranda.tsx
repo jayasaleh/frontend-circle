@@ -12,7 +12,6 @@ import { useAuthLogin } from '@/stores/authLogin';
 import { TweetForm } from '@/types/tweetForm';
 import { Image, Loader2 } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
@@ -72,13 +71,9 @@ function Beranda() {
   };
   return (
     <>
-      <Helmet>
-        <title>Circle</title>
-        <meta
-          name="description"
-          content="Lihat apa yang terjadi di Circle saat ini. Feed utama dari teman dan komunitas Anda."
-        />
-      </Helmet>
+      <title>Circle</title>
+      <meta name="description" content="Feed utama Anda." />
+      
       <div className="w-full border-x h-full p-2">
         {/*Posting Input*/}
         <div className="flex flex-col ">
