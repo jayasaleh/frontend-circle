@@ -6,6 +6,7 @@ import {
   AvatarImage,
 } from '../../components/ui/avatar';
 import FollowToggleButton from './components/FollowToggleButton';
+import { Link } from 'react-router-dom';
 function Followers() {
   const { data: followers, isLoading, isError } = useGetFollowers();
 
@@ -54,21 +55,25 @@ function Followers() {
                 key={follow.id}
               >
                 <div className="flex items-center gap-2">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage
-                      src={follow.photo === undefined ? '' : follow.photo}
-                      alt={follow.name}
-                    />
-                    <AvatarFallback>
-                      {follow.name.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="text-sm font-medium">{follow.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      @ {follow.name}
-                    </p>
-                  </div>
+                  <Link to={`/profile/${follow.id}`}>
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage
+                        src={follow.photo === undefined ? '' : follow.photo}
+                        alt={follow.name}
+                      />
+                      <AvatarFallback>
+                        {follow.name.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Link>
+                  <Link to={`/profile/${follow.id}`}>
+                    <div>
+                      <p className="text-sm font-medium">{follow.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        @ {follow.name}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
                 <FollowToggleButton
                   followId={follow.id}

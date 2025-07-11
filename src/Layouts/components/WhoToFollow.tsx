@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import FollowToggleButton from '@/features/follow/components/FollowToggleButton';
 import { useSuggestUsers } from '@/hooks/useSuggestedUsers';
 import { PiSpinner } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 
 function WhoToFollow() {
   const { data: suggestUsers, isLoading, isError } = useSuggestUsers();
@@ -56,22 +57,26 @@ function WhoToFollow() {
                 key={follow.id}
               >
                 <div className="flex items-center gap-2">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage
-                      src={follow.photo}
-                      alt={follow.name}
-                      className="object-cover"
-                    />
-                    <AvatarFallback>
-                      {follow.name.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="text-sm font-medium">{follow.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {'@' + follow.username}
-                    </p>
-                  </div>
+                  <Link to={`/profile/${follow.id}`}>
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage
+                        src={follow.photo}
+                        alt={follow.name}
+                        className="object-cover"
+                      />
+                      <AvatarFallback>
+                        {follow.name.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Link>
+                  <Link to={`/profile/${follow.id}`}>
+                    <div>
+                      <p className="text-sm font-medium">{follow.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {'@' + follow.username}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
                 <FollowToggleButton
                   followId={follow.id}

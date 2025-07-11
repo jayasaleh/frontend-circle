@@ -6,6 +6,7 @@ import {
   AvatarImage,
 } from '../../components/ui/avatar';
 import FollowToggleButton from './components/FollowToggleButton';
+import { Link } from 'react-router-dom';
 function Following() {
   const { data: following, isLoading } = useGetFollowing();
   if (isLoading) {
@@ -52,23 +53,27 @@ function Following() {
                 key={follow.followee.id}
               >
                 <div className="flex items-center gap-2">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage
-                      src={follow.followee.photo}
-                      alt={follow.followee.name}
-                    />
-                    <AvatarFallback>
-                      {follow.followee.name.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="text-sm font-medium">
-                      {follow.followee.name}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      @{follow.followee.username}
-                    </p>
-                  </div>
+                  <Link to={`/profile/${follow.followeeId}`}>
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage
+                        src={follow.followee.photo}
+                        alt={follow.followee.name}
+                      />
+                      <AvatarFallback>
+                        {follow.followee.name.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Link>
+                  <Link to={`/profile/${follow.followeeId}`}>
+                    <div>
+                      <p className="text-sm font-medium">
+                        {follow.followee.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        @{follow.followee.username}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
                 <FollowToggleButton
                   followId={follow.followeeId}
