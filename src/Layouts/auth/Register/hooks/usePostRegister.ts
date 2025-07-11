@@ -8,7 +8,7 @@ export const usePostRegister = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (newUser: RegisterDTO) => {
-      const response = await api.post('user', newUser);
+      const response = await api.post('/user', newUser);
       return response.data;
     },
     onSuccess: (data: ApiResponse) => {

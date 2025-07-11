@@ -2,7 +2,7 @@ import { useAuthLogin } from '@/stores/authLogin';
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || 'localhost:3000/api/v1',
 });
 api.interceptors.request.use(
   (config) => {

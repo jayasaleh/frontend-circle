@@ -71,18 +71,18 @@ function ProfileUser() {
                 )}
               </div>
               <div className="flex flex-col p-2">
-                <h3 className="text-lg font-bold">{user.name}</h3>
+                <h3 className="text-lg font-bold">{users.name}</h3>
                 <p className="text-sm text-muted-foreground mb-3">
-                  @{user.username}
+                  @{users.username}
                 </p>
-                <p className="text-sm">{user.bio}</p>
+                <p className="text-sm">{users.bio}</p>
                 <div className="flex justify-between w-full mt-2 mb-4">
                   <UserFollowCounts userId={userId} />
                 </div>
               </div>
             </div>
           </div>
-          <ProfileMenu userId={user.id} />
+          <ProfileMenu userId={users.id} />
         </div>
       </div>
     </>
