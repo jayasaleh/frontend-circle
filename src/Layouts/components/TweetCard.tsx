@@ -15,7 +15,7 @@ const TweetCard = ({ tweet }: FeedsApiResponse) => {
   const { user } = useAuthLogin();
   return (
     <div className="flex gap-3 border-b border-neutral-800 p-4" key={tweet.id}>
-      <Link to={`/profile/${tweet.user.username}`}>
+      <Link to={`/profile/${tweet.user.id}`}>
         <Avatar className="h-10 w-10">
           <AvatarImage
             src={tweet.user.photo || ''}
