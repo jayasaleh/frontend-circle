@@ -1,6 +1,5 @@
 import CreatePostModal from '@/components/CreatePostModal';
 import { Button } from '@/components/ui/button';
-import { ButtonTheme } from '@/components/ui/buttonTheme';
 import { useAuthLogin } from '@/stores/authLogin';
 import { Heart, Home, Search, User } from 'lucide-react';
 import { TbLogout2 } from 'react-icons/tb';
@@ -59,9 +58,8 @@ function Navigation() {
         </Link>
         <CreatePostModal />
       </div>
-      <div className="flex  justify-evenly">
-        <ButtonTheme />
-        <Button className="" onClick={handleLogout} variant="outline">
+      <div className="flex">
+        <Button className="bg-red-500 hover:bg-red-600" onClick={handleLogout}>
           <TbLogout2 size={20} className="dark:text-white" />
           <span className="dark:text-white"> Log Out</span>
         </Button>

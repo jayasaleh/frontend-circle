@@ -1,13 +1,15 @@
 import { Button } from '@/components/ui/button';
-
 import { Input } from '@/components/ui/input';
 import { useLogin } from '@/Layouts/auth/Login/hooks/useLogin';
 import { LoginDTO, schemaLogin } from '@/schema/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 function AuthLogin() {
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -37,13 +39,26 @@ function AuthLogin() {
             ) : (
               <p></p>
             )}
-            <Input
-              type="password"
-              {...register('password')}
-              placeholder="Password"
-            />
+            <div className="relative">
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                {...register('password')}
+                placeholder="Password"
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center text-sm"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5 text-gray-500" />
+                ) : (
+                  <Eye className="w-5 h-5 text-gray-500" />
+                )}
+              </button>
+            </div>
             {errors.password && (
-              <p className="text-red-400">{errors.password.message}</p>
+              <span className="text-red-400">{errors.password.message}</span>
             )}
 
             <div className="flex justify-end">

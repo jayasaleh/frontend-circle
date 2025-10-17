@@ -3,10 +3,14 @@ import { Input } from '@/components/ui/input';
 import { usePostRegister } from '@/Layouts/auth/Register/hooks/usePostRegister';
 import { RegisterDTO, schemaRegister } from '@/schema/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 function AuthRegister() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setConfirmShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -57,24 +61,49 @@ function AuthRegister() {
             ) : (
               <p></p>
             )}
-            <Input
-              id="password"
-              type="password"
-              placeholder="Password"
-              {...register('password')}
-            />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                {...register('password')}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center text-sm"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5 text-gray-500" />
+                ) : (
+                  <Eye className="w-5 h-5 text-gray-500" />
+                )}
+              </button>
+            </div>
             {errors.password ? (
               <p className="text-red-400"> {errors.password.message}</p>
             ) : (
               <p></p>
             )}
-
-            <Input
-              id="confirmPassword"
-              type="password"
-              placeholder="Confirm Password"
-              {...register('confirmPassword')}
-            />
+            <div className="relative">
+              <Input
+                id="confirmPassword"
+                type={showConfirmPassword ? 'text' : 'password'}
+                placeholder="Confirm Password"
+                {...register('confirmPassword')}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center text-sm"
+                onClick={() => setConfirmShowPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? (
+                  <EyeOff className="w-5 h-5 text-gray-500" />
+                ) : (
+                  <Eye className="w-5 h-5 text-gray-500" />
+                )}
+              </button>
+            </div>
             {errors.confirmPassword ? (
               <p className="text-red-400"> {errors.confirmPassword.message}</p>
             ) : (
