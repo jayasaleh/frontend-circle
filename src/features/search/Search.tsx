@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDebounce } from './hooks/useDebounce';
 import { useSearchUsers } from './hooks/useSearchUsers';
 import UserCard from './components/UserCard';
+import { Link } from 'react-router-dom';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -34,7 +35,9 @@ const Search = () => {
             )}
             <div className="p-3 flex flex-col gap-5">
               {searchResults.map((user) => (
-                <UserCard key={user.id} user={user} />
+                <Link to={`/profile/${user.id}`}>
+                  <UserCard key={user.id} user={user} />
+                </Link>
               ))}
             </div>
           </div>

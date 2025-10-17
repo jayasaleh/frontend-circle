@@ -22,7 +22,7 @@ function Layout() {
         <LeftSide />
       </aside>
       <main className=" md:max-w-[850px] pt-2 ">
-        <h1 className="text-2xl md:hidden text-center font-bold text-green-700 mt-2">
+        <h1 className="text-2xl md:hidden lg:hidden text-center font-bold text-green-700 mt-2">
           Circle
         </h1>
         <Outlet />
