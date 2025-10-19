@@ -6,7 +6,7 @@ export const schemaLogin = z.object({
     .string()
     .min(1, 'Email wajib diisi')
     .email('Format email tidak valid'),
-  password: z.string().min(4, 'Password minimal 6 karakter'),
+  password: z.string().min(1, 'Password wajib diisi'),
 });
 
 export type RegisterDTO = z.infer<typeof schemaRegister>;
